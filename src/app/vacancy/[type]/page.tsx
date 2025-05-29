@@ -12,7 +12,6 @@ export default function VacancyList() {
   const { vacancies, loadVacancies } = useVacancies(); // Извлекаем данные и функцию из контекста
   const params = useParams();
   
-  // Приводим type к строке, даже если это массив
   const type = Array.isArray(params?.type) ? params.type[0] : params?.type || 'all';
 
   useEffect(() => {
