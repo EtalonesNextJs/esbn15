@@ -58,8 +58,8 @@ export default function VacancyList() {
     <>
       <h1 className="text-center text-3xl font-bold">{translateType(type)}</h1>
       <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 max-w-md sm:max-w-screen-md lg:max-w-screen-lg w-full mx-auto px-6">
-        {vacanciesArray?.map((vacancy: VacancyType) => (
-          <VacancyCard key={vacancy._id} vacancy={vacancy} />
+        {vacanciesArray?.map((vacancy: VacancyType, index: number) => (
+          <VacancyCard key={index} vacancy={vacancy} />
         ))}
       </div>
       <FormCallBack/>

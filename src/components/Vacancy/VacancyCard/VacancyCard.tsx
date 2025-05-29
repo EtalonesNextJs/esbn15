@@ -110,14 +110,28 @@ import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import DrawerContentComponent from "@/components/Drawer/DrawerContentComponent";
 import { Dialog } from "@/components/ui/dialog";
 import { VacancyType } from "@/lib/types/vacancy"; // Тип вакансии
+import { Ripple } from "@/components/magicui/ripple";
 
 export default function VacancyCard({ vacancy }: { vacancy: VacancyType }) {
   return (
     
     <Dialog>
       <Drawer>
-        <Card className="w-full max-w-[400px] h-full relative">
-          <AspectRatio ratio={16 / 9}>
+        <Card className="w-full max-w-[400px] h-full relative pt-0!">
+         <div className="relative flex py-10  w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background">
+      <p className="z-10 whitespace-pre-wrap text-center text-3xl font-medium tracking-tighter text-primary">
+        {vacancy?.title}
+      </p>
+      <Ripple mainCircleSize={50} mainCircleOpacity={0.5} />
+    </div>
+        {/* <Image
+          src="/main/logofordafaultimage.jpg"
+          alt="icon"
+          width={400}
+          height={400}
+          className="h-50 w-100 rounded-lg bg-muted shrink-0"
+        /> */}
+          {/* <AspectRatio ratio={16 / 9}>
             <Image
               src={vacancy?.imageFB || "/main/logofordafaultimage.jpg"}
               alt="Vacancy"
@@ -125,9 +139,9 @@ export default function VacancyCard({ vacancy }: { vacancy: VacancyType }) {
               height={200}
               className="rounded-md object-cover"
             />
-          </AspectRatio>
+          </AspectRatio> */}
           <CardHeader className="mt-6">
-            <CardTitle className="text-xl">{vacancy?.title}</CardTitle>
+            {/* <CardTitle className="text-xl">{vacancy?.title}</CardTitle> */}
             <CardDescription>{vacancy?.roof_type}</CardDescription>
           </CardHeader>
 
@@ -182,6 +196,7 @@ export default function VacancyCard({ vacancy }: { vacancy: VacancyType }) {
             </DrawerTrigger>
             <DrawerContentComponent vacancy={vacancy} />
           </CardFooter>
+          
         </Card>
       </Drawer>
     </Dialog>
