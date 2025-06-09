@@ -177,7 +177,7 @@ export function MyMarquee() {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
       </div>
       <Button type="button" className="flex justify-center my-2 mx-auto">
-        <Link className="text-white" href="/vacancy/all">
+        <Link className="text-white" href="/vacancy/category/all">
           Показать все
         </Link>
       </Button>

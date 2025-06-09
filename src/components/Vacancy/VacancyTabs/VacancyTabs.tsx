@@ -11,7 +11,7 @@ export default function VacancyTabs() {
   const type = Array.isArray(params?.type) ? params.type[0] : params?.type ?? 'all';
 
   const handleTabChange = (value: string) => {
-    router.push(`/vacancy/${value}`);
+    router.push(`/vacancy/category/${value}`);
   };
 
   return (

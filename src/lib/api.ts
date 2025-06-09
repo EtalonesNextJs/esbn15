@@ -1,17 +1,18 @@
-// lib/api.ts
+const vacancyCache = new Map<string, Promise<any>>();
 
 export async function getVacancyById(id: string) {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/${id}`, {
-      cache: 'no-store', // отключить кэш, если нужно всегда актуальные данные
-    });
-
-    if (!res.ok) return null;
-
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.error('Ошибка при загрузке вакансии:', err);
-    return null;
+  if (vacancyCache.has(id)) {
+    return vacancyCache.get(id);
   }
+  const promise = (async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/${id}`, { cache: 'no-store' });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  })();
+  vacancyCache.set(id, promise);
+  return promise;
 }

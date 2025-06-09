@@ -57,7 +57,7 @@ const Hero = () => {
     /> свободных мест
         </div>
         <div className="mt-12 flex items-center justify-center flex-wrap gap-4">
-        <Link href="/vacancy/all">
+        <Link href="/vacancy/category/all">
         <ShimmerButton className="shadow-2xl" background='#870B0B55' >
           <div className="rounded-full text-base flex gap-2">
             Смотреть предложения <ArrowUpRight className="!h-5 !w-5" />
