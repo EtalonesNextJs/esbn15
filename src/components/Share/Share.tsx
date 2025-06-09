@@ -10,7 +10,7 @@ interface ShareProps {
 
 const Share = ({ vacancyId }: ShareProps) => {
   const handleShareClick = async () => {
-    const vacancyLink = `${window.location.origin}/vacancy/by-id/${vacancyId}`;  // формируем ссылку на вакансию
+    const vacancyLink = `${window.location.origin}/vacancy/${vacancyId}`;  // формируем ссылку на вакансию
     try {
       await navigator.clipboard.writeText(vacancyLink);  // копируем ссылку в буфер обмена
       toast('Ссылка скопирована в буфер обмена!');
