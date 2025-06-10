@@ -15,8 +15,14 @@ import React from 'react'
 // Словарь: slug => отображаемое название
 const BREADCRUMB_LABELS: Record<string, string> = {
   'vacancy': 'Вакансия',
-
-  
+  'bruschatochnik-trir': 'Брусчаточник Трир',
+  'armaturshchik-garmish-partenkirhen-rabota-s-armaturoy-i-kamnem': 'Арматуршик Гармиш Партенкирхен',
+  'voditel-trir-rabota-po-okrestnostyam-trira-marshruty-ot-50-do-150-km': 'Водитель Трир',
+  'silikonovaya-shtukaturka-belgiya-bryussel-antverpen-nanesenie-silikonovoy-shtukaturki': 'Силиконовая штукатурка Бельгия',
+  'klinkernaya-kladka-belgiya-bryussel-i-antverpen-rabota-s-klinkernoy-plitkoy': 'Клинерная кладка Бельгия',
+  'podsobnyy-rabochiy-belgiya-bryussel-antverpen-rabota-na-stroyke': 'Подсобный рабочий Бельгия',
+  'avtomehanik-trir-rabota-po-obsluzhivaniyu-avtoparka-kompanii': 'Автомеханик Трир ',
+    
 
 }
 
