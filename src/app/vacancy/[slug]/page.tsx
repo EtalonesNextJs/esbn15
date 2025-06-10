@@ -1,19 +1,22 @@
-import { getVacancyById } from '@/lib/api'
+import { getVacancyBySlug } from '@/lib/api'
 import VacancyPageById from '@/components/Vacancy/VacancyPageById/VacancyPageById'
 import { notFound } from 'next/navigation'
 import type { Metadata, ResolvingMetadata } from 'next'
-
+import { redirect } from 'next/navigation'
+import { generateSlugFromVacancy } from '@/utils/geterateSlugFromVac'
 type Props = {
-  params: Promise<{ id: string }>
+  params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
+
 
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { id } = await params
-  const vacancy = await getVacancyById(id)
+  const { slug } = await params
+  
+  const vacancy = await getVacancyBySlug(slug)
 
   if (!vacancy) {
     return {
@@ -38,7 +41,9 @@ export async function generateMetadata(
   const keywordsArr = [title, location, roof_type, ...skills.split(', ')].map(k => k.trim())
   const keywords = [...new Set([...keywordsArr, 'работа за границей', 'вакансия', 'трудоустройство'])].join(', ')
 
-  const url = `https://etalones.com/vacancy/${id}`
+ const generatedSlug = generateSlugFromVacancy(vacancy);
+ const url = `https://etalones.com/vacancy/${generatedSlug}`;
+
 
   return {
     title: `${title} – Работа в ${location} | Etalones`,
@@ -72,17 +77,29 @@ export async function generateMetadata(
   }
 }
 
-// Компонент страницы
-export default async function VacancyPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
-  const { id } = await params
-  const vacancy = await getVacancyById(id)
 
-  if (!vacancy) return notFound()
+export default async function VacancyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
-  return <VacancyPageById vacancy={vacancy} />
+  const vacancy = await getVacancyBySlug(slug);
+  if (!vacancy) return notFound();
+
+  return <VacancyPageById vacancy={vacancy} />;
 }
+
+// Компонент страницы
+// export default async function VacancyPage({
+//   params,
+// }: {
+//   params: Promise<{ id: string }>
+// }) {
+//   // const { id } = await params
+//   // const vacancy = await getVacancyById(id)
+//   const slug = await params
+//   const vacancy = await getVacancyBySlug(slug); // ищем по slug
+//   if (!vacancy) return notFound();
+//   if (!vacancy) return notFound()
+
+//   return <VacancyPageById vacancy={vacancy} />
+// }
 

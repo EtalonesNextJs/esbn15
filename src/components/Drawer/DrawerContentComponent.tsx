@@ -23,7 +23,7 @@ export default function DrawerContentComponent({ vacancy }: { vacancy: any }) {
   const [open, setOpen] = useState(false);
   return (
     <DrawerContent className="overflow-auto ">
-      <Share vacancyId={vacancy._id} />
+      <Share vacancy={vacancy} />
       <DrawerHeader >
         <DrawerTitle className="text-2xl">{vacancy?.title}</DrawerTitle>
         <div>

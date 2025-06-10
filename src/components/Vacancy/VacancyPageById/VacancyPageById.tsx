@@ -9,10 +9,13 @@ import { Blocks, CircleCheck, HandCoins, Minus, Phone } from "lucide-react";
 import { VacancyType } from "@/lib/types/vacancy"; // Тип вакансии
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Label } from "@/components/ui/label";
+import DialogFormTg from "@/components/Dialog/DialogFormTg";
+import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 
 export default function VacancyPageById({ vacancy }: { vacancy: VacancyType }) {
   return (
-        <div className="  ">   
+        <div className="  "> 
+        <Breadcrumbs/>  
       <Card className="m-1 flex flex-wrap">
               <CardContent>
                 <div className="flex flex-wrap gap-2"> 
@@ -141,6 +144,7 @@ export default function VacancyPageById({ vacancy }: { vacancy: VacancyType }) {
             <span className="text-gray-600 text-sm flex gap-1 justify-center items-center"><Phone size={16}/>+{vacancy.manager?.phone}</span>
           </div>
           </Card>
+          <DialogFormTg vacancy={vacancy} />
           </div>
   );
 }

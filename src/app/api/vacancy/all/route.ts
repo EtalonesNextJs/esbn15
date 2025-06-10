@@ -16,7 +16,7 @@ export const GET = async (request: Request): Promise<Response> => {
   const stage = await Stage.findById(stageId)
     .populate({
       path: 'vacancy',
-      select: 'title place skills roof_type location salary homePrice home_descr work_descr grafik drivePermis langue workHours documents imageFB homeImageFB manager',
+      select: 'title place skills roof_type location salary homePrice home_descr work_descr grafik drivePermis langue workHours documents slug imageFB homeImageFB manager',
       populate: {
         path: 'manager',  
         select: 'name phone viber telegram whatsapp',  

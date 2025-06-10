@@ -93,6 +93,12 @@ const VacanciesSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Candidate',
       }],
+      slug: {
+    type: String,
+    required: true,
+    unique: true,
+    index: true,
+  },
       
 
 },{ timestamps: true });
