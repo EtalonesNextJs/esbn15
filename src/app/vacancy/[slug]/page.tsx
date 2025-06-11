@@ -2,7 +2,6 @@ import { getVacancyBySlug } from '@/lib/api'
 import VacancyPageById from '@/components/Vacancy/VacancyPageById/VacancyPageById'
 import { notFound } from 'next/navigation'
 import type { Metadata, ResolvingMetadata } from 'next'
-import { redirect } from 'next/navigation'
 import { generateSlugFromVacancy } from '@/utils/geterateSlugFromVac'
 type Props = {
   params: Promise<{ slug: string }>

@@ -27,7 +27,7 @@ const Share = ({ vacancy }: ShareProps) => {
   };
 
   return (
-    <button onClick={handleShareClick} aria-label="Поделиться">
+    <button onClick={handleShareClick} aria-label="Поделиться" className='cursor-pointer'>
       <ShareIcon />
     </button>
   );

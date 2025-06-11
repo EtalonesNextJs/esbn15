@@ -13,6 +13,7 @@ import DialogFormTg from "@/components/Dialog/DialogFormTg";
 import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 
 export default function VacancyPageById({ vacancy }: { vacancy: VacancyType }) {
+    
   return (
         <div className="  "> 
         <Breadcrumbs/>  

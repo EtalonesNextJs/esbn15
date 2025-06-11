@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.etalones.com
+
+# Sitemaps
+Sitemap: https://www.etalones.com/sitemap.xml
