@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import DefaultLayout from "@/layouts/Default";
-
+import { Analytics } from '@vercel/analytics/next';
 
 
 const geistSans = Geist({
@@ -32,6 +32,7 @@ export default function RootLayout({
         >
       <DefaultLayout>
         {children}
+        <Analytics />
       </DefaultLayout>
       </body>
     </html>
