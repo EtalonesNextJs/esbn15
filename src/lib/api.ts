@@ -29,12 +29,26 @@ export async function getVacancyById(id: string) {
   vacancyCache.set(id, promise);
   return promise;
 }
+// /lib/api.ts
 export async function getVacancyBySlug(slug: string) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/slug/${slug}`, { cache: 'no-store' });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/slug/${slug}`, {
+      next: { revalidate: 60 } // ✅ корректно
+    });
+
     if (!res.ok) return null;
     return await res.json();
   } catch {
     return null;
   }
 }
+
+// export async function getVacancyBySlug(slug: string) {
+//   try {
+//     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/slug/${slug}`, { next: { revalidate: 60 } });
+//     if (!res.ok) return null;
+//     return await res.json();
+//   } catch {
+//     return null;
+//   }
+// }
