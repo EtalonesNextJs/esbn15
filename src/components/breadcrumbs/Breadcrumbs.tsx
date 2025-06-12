@@ -47,7 +47,13 @@ const BREADCRUMB_LABELS: Record<string, string> = {
   'fasadchik-burghaun-mokrye-fasady': 'Фасадчик Бургхаун',
   'solnechnye-paneli-dyusseldorf-germaniya-montazh-solnechnyh-paneley-na-kryshah': 'Солнечные панели Дюссельдорф',
   'solnechnye-paneli-osnabryuk-germaniya-montazh-solnechnyh-paneley-v-gorode-osnabryuk-germaniya-dlya-grazhdan-sng-v-germanii': 'Солнечные панели Оснабрюк Германия',
-}
+  'ekskavatorshchik-trir-rabota-na-ekskavatore-v-gorode-myunhen': 'Экскаваторшик Трир',
+  'podsobnyy-rabochiy-kassel-rabota-podsobnym-rabochim-na-dorozhnyh-rabotah.-ustanovka-bordyurov-ukladka-asfalta-montazh-kanalizacionnyh-lyukov-v-gorode-kassel': 'Подсобный рабочий Кассель',
+  'avtomehanik-kassel-germaniya-rabota-v-otlichnom-avtoservise-s-horoshimi-usloviyami': 'Автомеханик Кассель Германия',
+  'stroitelnye-lesa-kyoln-rabota-voditelem-v-gorode-kyoln-transportirovka-stroitelnyh-lesov-i-uchastie-v-montazhe': 'Строительные леса Кёльн',
+  'master-universal-ahen-rabota-po-vnutrenney-otdelke-aahen-germaniya': 'Мастер Универсал Ахен',
+} 
+
 
 
 function formatLabel(segment: string) {
