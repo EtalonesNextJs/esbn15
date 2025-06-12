@@ -17,15 +17,21 @@ export default function VacancyPageById({ vacancy }: { vacancy: VacancyType }) {
   return (
         <div className="  "> 
         <Breadcrumbs/>  
-      <Card className="m-1 flex flex-wrap">
+      <div className="m-1 flex flex-wrap">
               <CardContent>
                 <div className="flex flex-wrap gap-2"> 
-                <Image
+                <div className="relative flex w-100 h-50 md:h-[250px] md:w-[400px] flex-col items-center justify-center overflow-hidden rounded-lg drop-shadow-md  bg-center bg-no-repeat bg-cover"
+     style={{
+    backgroundImage: `url(${vacancy.imageFB || '/default.jpg'})`,
+  }}/>
+
+                    
+                {/* <Image
                   src={vacancy?.imageFB || "/main/logofordafaultimage.jpg"}
                   alt="Vacancy"
                   width={400}
                   height={200}
-                  className="rounded-md object-cover flex justify-center items-center" />
+                  className="rounded-md object-cover flex justify-center items-center" /> */}
                 <div className=" rounded-md border border-gray-300 bg-white p-2 shadow-sm">
                           <Label className="text-md font-bold my-2"><Blocks />Необходимые навыки</Label>
                           {vacancy?.skills?.split(';').map((item: string, index: number) => (
@@ -153,7 +159,7 @@ export default function VacancyPageById({ vacancy }: { vacancy: VacancyType }) {
             <span className="font-semibold">{vacancy.manager?.name}</span>
             <span className="text-gray-600 text-sm flex gap-1 justify-center items-center"><Phone size={16}/>+{vacancy.manager?.phone}</span>
           </div>
-          </Card>
+          </div>
           <DialogFormTg vacancy={vacancy} />
           </div>
   );

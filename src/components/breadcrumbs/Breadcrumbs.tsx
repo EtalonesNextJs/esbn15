@@ -46,6 +46,7 @@ const BREADCRUMB_LABELS: Record<string, string> = {
   'santehnik-dortmund-santehnika-v-vannoy-komnate': 'Сантехник Дортмунд',
   'fasadchik-burghaun-mokrye-fasady': 'Фасадчик Бургхаун',
   'solnechnye-paneli-dyusseldorf-germaniya-montazh-solnechnyh-paneley-na-kryshah': 'Солнечные панели Дюссельдорф',
+  'solnechnye-paneli-osnabryuk-germaniya-montazh-solnechnyh-paneley-v-gorode-osnabryuk-germaniya-dlya-grazhdan-sng-v-germanii': 'Солнечные панели Оснабрюк Германия',
 }
 
 
