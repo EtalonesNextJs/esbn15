@@ -34,6 +34,14 @@ export default function VacancyPageById({ vacancy }: { vacancy: VacancyType }) {
                               </div>
                           ))}
                       </div>
+                      <div className=" rounded-md border border-gray-300 bg-white p-2 shadow-sm">
+                          <Label className="text-md font-bold my-2"><Blocks />Необходимые документы</Label>
+                          {vacancy?.documents?.map((item: string, index: number) => (
+                              <div key={index} className="flex gap-2 justify-start items-center my-1">
+                                  <CircleCheck size={18} className="flex-shrink-0" /> {item}
+                              </div>
+                          ))}
+                      </div>
                       <div className="w-full rounded-md border border-gray-300 bg-white p-2 shadow-sm">
                           <div>
                               <Label>Заработная плата</Label>
@@ -62,6 +70,7 @@ export default function VacancyPageById({ vacancy }: { vacancy: VacancyType }) {
                                   </div></>)}
                           </div>
                       </div>
+                      
                       <div className="w-full rounded-md border border-gray-300 bg-white p-2 shadow-sm">
                       <Label className="text-xl font-bold my-2">О работе</Label>
                       {vacancy.work_descr?.split(';').map((item: string, index: number) => (

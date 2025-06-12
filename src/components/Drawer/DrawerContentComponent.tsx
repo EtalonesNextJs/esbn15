@@ -45,7 +45,7 @@ export default function DrawerContentComponent({ vacancy }: { vacancy: any }) {
       <Card className="m-1">
       
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div className=" rounded-md border border-gray-300 bg-white p-2 shadow-sm">
               <Label className="text-md font-bold my-2"><Blocks />Необходимые навыки</Label>
               {vacancy?.skills?.split(';').map((item: string, index: number) => (
@@ -82,7 +82,14 @@ export default function DrawerContentComponent({ vacancy }: { vacancy: any }) {
                   </div></>)}
               </div>
             </div>
-
+<div className=" rounded-md border border-gray-300 bg-white p-2 shadow-sm">
+                          <Label className="text-md font-bold my-2"><Blocks />Необходимые документы</Label>
+                          {vacancy?.documents?.map((item: string, index: number) => (
+                              <div key={index} className="flex gap-2 justify-start items-center my-1">
+                                  <CircleCheck size={18} className="flex-shrink-0" /> {item}
+                              </div>
+                          ))}
+                      </div>
             {/* <Image src={vacancy.imageFB || "/images/logo/logo-red.png"}
                             alt="Фото вакансии" width={350} height={200}
                             className="rounded-md max-h-max absolute top-3 right-3" /> */}
