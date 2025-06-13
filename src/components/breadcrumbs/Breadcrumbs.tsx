@@ -53,6 +53,7 @@ const BREADCRUMB_LABELS: Record<string, string> = {
   'stroitelnye-lesa-kyoln-rabota-voditelem-v-gorode-kyoln-transportirovka-stroitelnyh-lesov-i-uchastie-v-montazhe': 'Строительные леса Кёльн',
   'master-universal-ahen-rabota-po-vnutrenney-otdelke-aahen-germaniya': 'Мастер Универсал Ахен',
   'solnechnye-paneli-germagiya-montazh-solnechnyh-paneley-na-kryshah-podklyuchenie': 'Солнечные панели Германия',
+  'elektrik-keln-essen-prokladka-steklovolokna': 'Электрик Кельн Эссен',
 } 
 
 
