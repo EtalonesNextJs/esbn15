@@ -30,6 +30,19 @@ const VacanciesSchema = new Schema({
       location: {
         type: String
       },
+      country: {
+        type: String
+        
+    },
+     city: {
+      type: String
+  },
+  urgently: {
+    type: Boolean,
+  },
+   last: {
+    type: Boolean,
+  },
       auto: {
         type: String
       },

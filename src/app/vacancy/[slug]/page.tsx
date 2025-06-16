@@ -1,4 +1,4 @@
-import { getVacancyBySlug } from '@/lib/api'
+import { getVacancyBySlug } from '@/lib/api/api'
 import VacancyPageById from '@/components/Vacancy/VacancyPageById/VacancyPageById'
 import { notFound } from 'next/navigation'
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -86,19 +86,5 @@ export default async function VacancyPage({ params }: { params: Promise<{ slug: 
   return <VacancyPageById vacancy={vacancy} />;
 }
 
-// Компонент страницы
-// export default async function VacancyPage({
-//   params,
-// }: {
-//   params: Promise<{ id: string }>
-// }) {
-//   // const { id } = await params
-//   // const vacancy = await getVacancyById(id)
-//   const slug = await params
-//   const vacancy = await getVacancyBySlug(slug); // ищем по slug
-//   if (!vacancy) return notFound();
-//   if (!vacancy) return notFound()
 
-//   return <VacancyPageById vacancy={vacancy} />
-// }
 

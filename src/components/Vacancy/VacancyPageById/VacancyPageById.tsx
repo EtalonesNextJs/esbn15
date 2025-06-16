@@ -15,15 +15,16 @@ import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 export default function VacancyPageById({ vacancy }: { vacancy: VacancyType }) {
     
   return (
-        <div className="  "> 
+        <div > 
         <Breadcrumbs/>  
       <div className="m-1 flex flex-wrap">
               <CardContent>
+                    <h1 className="text-center text-3xl font-bold my-5">{vacancy.title} в {vacancy.location}</h1>
                 <div className="flex flex-wrap gap-2"> 
                 <div className="relative flex w-80 h-40 md:h-[250px] md:w-[400px] flex-col items-center justify-center overflow-hidden rounded-lg drop-shadow-md  bg-center bg-no-repeat bg-cover"
      style={{
-    backgroundImage: `url(${vacancy.imageFB || '/default.jpg'})`,
-  }}/>
+         backgroundImage: `url(${vacancy.imageFB || '/default.jpg'})`,
+        }}/>
 
                     
                 {/* <Image

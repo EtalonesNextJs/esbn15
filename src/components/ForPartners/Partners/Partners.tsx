@@ -151,8 +151,8 @@ const Partners = () => {
 
     return (
         <>
-            <div className="max-h-screen flex items-center justify-center">
-                <div className="max-w-screen-xl w-full mx-auto grid lg:grid-cols-2 gap-12 px-6 py-12">
+            <div className="max-h-screen-xl flex items-center justify-center">
+                <div className=" grid lg:grid-cols-2 gap-12 px-6 py-12">
                     <div>
 
                         <h1 className="mt-6 max-w-[17ch] text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl font-bold !leading-[1.2]">

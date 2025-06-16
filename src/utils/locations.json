@@ -1,0 +1,248 @@
+[
+  {
+    "name": "Rennerod",
+    "city": "Rennerod",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 50.6082,
+      "lng": 8.06697
+    }
+  },
+  {
+    "name": "Würzburg",
+    "city": "Würzburg",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 49.7939,
+      "lng": 9.9512
+    }
+  },
+  {
+    "name": "Aachen",
+    "city": "Aachen",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 50.77535,
+      "lng": 6.08389
+    }
+  },
+  {
+    "name": "Bad Münstereifel",
+    "city": "Bad Münstereifel",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 50.5577,
+      "lng": 6.7613
+    }
+  },
+{
+    "name": "Brussels",
+    "city": "Brussels",
+    "country": "Belgium",
+    "coordinates": {
+      "lat": 50.8505,
+      "lng": 4.3488
+    }
+  },
+  {
+    "name": "Antwerp",
+    "city": "Antwerp",
+    "country": "Belgium",
+    "coordinates": {
+      "lat": 51.2194,
+      "lng": 4.4025
+    }
+  },
+  {
+    "name": "Liège",
+    "city": "Liège",
+    "country": "Belgium",
+    "coordinates": {
+      "lat": 50.6337,
+      "lng": 5.5675
+    }
+  },
+  {
+    "name": "Berlin",
+    "city": "Berlin",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 52.52,
+      "lng": 13.405
+    }
+  },
+{
+    "name": "Burghaun",
+    "city": "Burghaun",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 50.7212,
+      "lng": 9.6331
+    }
+  },
+  {
+    "name": "Waldbronn",
+    "city": "Waldbronn",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 48.9289,
+      "lng": 8.4697
+    }
+  },
+  {
+    "name": "Hamburg",
+    "city": "Hamburg",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 53.5511,
+      "lng": 9.9937
+    }
+  },
+  {
+    "name": "Hanover",
+    "city": "Hanover",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 52.3759,
+      "lng": 9.732
+    }
+  },
+ {
+    "name": "Garmisch-Partenkirchen",
+    "city": "Garmisch-Partenkirchen",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 47.4914,
+      "lng": 11.095
+    }
+  },
+  {
+    "name": "Rotterdam",
+    "city": "Rotterdam",
+    "country": "Netherlands",
+    "coordinates": {
+      "lat": 51.9244,
+      "lng": 4.4777
+    }
+  },
+  {
+    "name": "Dortmund",
+    "city": "Dortmund",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 51.5136,
+      "lng": 7.4653
+    }
+  },
+  {
+    "name": "Düren",
+    "city": "Düren",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 50.8079,
+      "lng": 6.4849
+    }
+  },
+  {
+    "name": "Düsseldorf",
+    "city": "Düsseldorf",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 51.2277,
+      "lng": 6.7735
+    }
+  },
+  {
+    "name": "Salzgitter",
+    "city": "Salzgitter",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 52.1500,
+      "lng": 10.3333
+    }
+  },
+{
+    "name": "Kassel",
+    "city": "Kassel",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 51.3127,
+      "lng": 9.4797
+    }
+  },
+  {
+    "name": "Cologne",
+    "city": "Cologne",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 50.9375,
+      "lng": 6.9603
+    }
+  },
+  {
+    "name": "Essen",
+    "city": "Essen",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 51.4556,
+      "lng": 7.0116
+    }
+  },
+  {
+    "name": "Mönchengladbach",
+    "city": "Mönchengladbach",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 51.1805,
+      "lng": 6.4428
+    }
+  },
+  {
+    "name": "Mühlacker",
+    "city": "Mühlacker",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 48.9501,
+      "lng": 8.8394
+    }
+  },
+[
+  {
+    "name": "Nuremberg",
+    "city": "Nuremberg",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 49.4521,
+      "lng": 11.0767
+    }
+  },
+  {
+    "name": "Osnabrück",
+    "city": "Osnabrück",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 52.2799,
+      "lng": 8.0472
+    }
+  },
+  {
+    "name": "Trier",
+    "city": "Trier",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 49.7499,
+      "lng": 6.6371
+    }
+  },
+  {
+    "name": "Frankfurt am Main",
+    "city": "Frankfurt am Main",
+    "country": "Germany",
+    "coordinates": {
+      "lat": 50.1109,
+      "lng": 8.6821
+    }
+  }
+]
+
+]

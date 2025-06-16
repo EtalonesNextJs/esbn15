@@ -1,6 +1,6 @@
-// 'use client'
 
-// import Image from "next/image";
+// 'use client';
+
 // import { Button } from "@/components/ui/button";
 // import {
 //   Card,
@@ -10,28 +10,30 @@
 //   CardHeader,
 //   CardTitle,
 // } from "@/components/ui/card";
-// import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 // import { Car, FileStack, HandCoins, Home, MapPinned } from "lucide-react";
 // import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 // import DrawerContentComponent from "@/components/Drawer/DrawerContentComponent";
 // import { Dialog } from "@/components/ui/dialog";
-// import { VacancyType } from "@/lib/types/vacancy";
+// import { VacancyType } from "@/lib/types/vacancy"; // Тип вакансии
 
 // export default function VacancyCard({ vacancy }: { vacancy: VacancyType }) {
 //   return (
+    
 //     <Dialog>
 //       <Drawer>
-//         <Card className="w-full max-w-[400px] h-full relative">
-//           <AspectRatio ratio={16 / 9}>
-//             <Image
-//               src={vacancy?.imageFB || ""}
-//               alt="Vacancy"
-//               width={400}
-//               height={200}
-//               className="rounded-md object-cover"
-//             />
-//           </AspectRatio>
+//         <Card className="w-full max-w-[400px] h-full relative pt-0!">
+//      <div className="relative flex  w-full flex-col items-center justify-center overflow-hidden rounded-lg drop-shadow-md  bg-center bg-no-repeat bg-cover"
+//      style={{
+//     backgroundImage: `url(${vacancy.imageFB || '/default.jpg'})`,
+//   }}
+//      >
+//       <p className="z-10 p-10 my-auto w-full h-full min-h-[200px] whitespace-pre-wrap text-center text-3xl font-medium tracking-tighter ">
+//         {/* {vacancy?.title} */}
+//       </p>
+//     </div>
+         
 //           <CardHeader className="mt-6">
+            
 //             <CardTitle className="text-xl">{vacancy?.title}</CardTitle>
 //             <CardDescription>{vacancy?.roof_type}</CardDescription>
 //           </CardHeader>
@@ -87,6 +89,7 @@
 //             </DrawerTrigger>
 //             <DrawerContentComponent vacancy={vacancy} />
 //           </CardFooter>
+          
 //         </Card>
 //       </Drawer>
 //     </Dialog>
@@ -94,6 +97,8 @@
 // }
 'use client';
 
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -107,26 +112,49 @@ import { Car, FileStack, HandCoins, Home, MapPinned } from "lucide-react";
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import DrawerContentComponent from "@/components/Drawer/DrawerContentComponent";
 import { Dialog } from "@/components/ui/dialog";
-import { VacancyType } from "@/lib/types/vacancy"; // Тип вакансии
+import { VacancyType } from "@/lib/types/vacancy";
+import { generateSlugFromVacancy } from "@/utils/geterateSlugFromVac"; // Импорт функции генерации slug
 
 export default function VacancyCard({ vacancy }: { vacancy: VacancyType }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const slug = generateSlugFromVacancy(vacancy);
+
+  if (!isClient) {
+    // Серверный рендер — выводим просто ссылку на страницу вакансии
+    return (
+      <Link
+        href={`/vacancy/${slug}`}
+        className="block w-full max-w-[400px] p-4 border rounded-lg shadow hover:shadow-md transition"
+      >
+        <h3 className="text-xl font-semibold">{vacancy.title}</h3>
+        <p>{vacancy.location || "Местоположение не указано"}</p>
+        <p>{vacancy.salary || "Зарплата не указана"}</p>
+      </Link>
+    );
+  }
+
+  // Клиентский рендер — карточка с Drawer и кнопкой подробнее
   return (
-    
     <Dialog>
       <Drawer>
         <Card className="w-full max-w-[400px] h-full relative pt-0!">
-     <div className="relative flex  w-full flex-col items-center justify-center overflow-hidden rounded-lg drop-shadow-md  bg-center bg-no-repeat bg-cover"
-     style={{
-    backgroundImage: `url(${vacancy.imageFB || '/default.jpg'})`,
-  }}
-     >
-      <p className="z-10 p-10 my-auto w-full h-full min-h-[200px] whitespace-pre-wrap text-center text-3xl font-medium tracking-tighter ">
-        {/* {vacancy?.title} */}
-      </p>
-    </div>
-         
+          <div
+            className="relative flex  w-full flex-col items-center justify-center overflow-hidden rounded-lg drop-shadow-md  bg-center bg-no-repeat bg-cover"
+            style={{
+              backgroundImage: `url(${vacancy.imageFB || "/default.jpg"})`,
+            }}
+          >
+            <p className="z-10 p-10 my-auto w-full h-full min-h-[200px] whitespace-pre-wrap text-center text-3xl font-medium tracking-tighter ">
+              {/* {vacancy?.title} */}
+            </p>
+          </div>
+
           <CardHeader className="mt-6">
-            
             <CardTitle className="text-xl">{vacancy?.title}</CardTitle>
             <CardDescription>{vacancy?.roof_type}</CardDescription>
           </CardHeader>
@@ -182,7 +210,6 @@ export default function VacancyCard({ vacancy }: { vacancy: VacancyType }) {
             </DrawerTrigger>
             <DrawerContentComponent vacancy={vacancy} />
           </CardFooter>
-          
         </Card>
       </Drawer>
     </Dialog>
