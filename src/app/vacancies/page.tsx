@@ -1,20 +1,34 @@
-import Link from "next/link";
+import { Metadata } from "next";
 
-const professions = ["плиточник", "электрик", "сантехник"];
 
-export default function VacanciesPage() {
+
+
+
+export const metadata: Metadata = {
+  title: "Все вакансии в Европе | ESBN",
+  description: "Поиск работы в Европе. Все актуальные вакансии с жильём, достойной зарплатой и официальным оформлением.",
+  openGraph: {
+    title: "Все вакансии в Европе | ESBN",
+    description: "Актуальные вакансии по профессиям и странам. Условия, жильё, зарплата — всё в одном месте.",
+    url: "https://example.com/vacancies",
+    siteName: "ESBN",
+    images: [
+      {
+        url: "https://example.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "ru_RU",
+    type: "website",
+  },
+};
+
+export default async function VacancyProfessionPage() {
+  
   return (
-    <div className="max-w-5xl mx-auto px-6 py-10">
-      <h1 className="text-3xl font-bold mb-6">Все профессии</h1>
-      <ul className="list-disc pl-5 space-y-2">
-        {professions.map((profession) => (
-          <li key={profession}>
-            <Link href={`/vacancies/${profession}`}>
-              {profession.charAt(0).toUpperCase() + profession.slice(1)}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      
+    </>
   );
 }

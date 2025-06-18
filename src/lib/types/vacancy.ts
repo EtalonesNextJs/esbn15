@@ -26,12 +26,15 @@ export type VacancyType = {
   id?: string;
     description?: string;
     location?: string;
+    city?: string;
+    country: string;
     date?: string;
     status?: string;
     skills?: string;
     experience?: string;
     place?: number;
     salary?: string;
+    avSalary?: string;
     rentPrice?: string;
     avans?: string;
     workwear?: string;
@@ -41,6 +44,12 @@ export type VacancyType = {
     getStart?: Date;
     pDocs?: string[];
     candidates?: string[]; 
+    slug?: string;
   };
 
-  
+ export type VacancyParams = {
+  city: string
+  profession: string
+  slug: string
+}
+ 

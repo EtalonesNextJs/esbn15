@@ -1,46 +1,18 @@
-import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Vacancies from "@/models/Vacancies";
+import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
-  try {
-    await connectDB();
-    const { searchParams } = new URL(req.url);
-    const profession = searchParams.get("profession");
+export async function GET() {
+  await connectDB();
 
-    if (!profession) {
-      return NextResponse.json({ message: "Profession is required" }, { status: 400 });
-    }
+  const allVacancies = await Vacancies.find().lean();
 
-    const grouped = await Vacancies.aggregate([
-      {
-        $match: {
-          title: profession,
-          city: { $exists: true, $ne: "" },
-          published: true,
-        },
-      },
-      {
-        $group: {
-          _id: "$city",
-          vacancies: { $push: "$$ROOT" },
-        },
-      },
-      {
-        $project: {
-          city: "$_id",
-          vacancies: 1,
-          _id: 0,
-        },
-      },
-      {
-        $sort: { city: 1 },
-      },
-    ]);
+  const grouped = allVacancies.reduce((acc: Record<string, any[]>, vacancy) => {
+    const city = vacancy.city || "Не указан";
+    if (!acc[city]) acc[city] = [];
+    acc[city].push(vacancy);
+    return acc;
+  }, {});
 
-    return NextResponse.json(grouped);
-  } catch (error) {
-    console.error("API /grouped-by-city error:", error);
-    return NextResponse.json({ message: "Server error" }, { status: 500 });
-  }
+  return NextResponse.json(grouped);
 }

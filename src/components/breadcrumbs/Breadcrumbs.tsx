@@ -54,6 +54,7 @@ const BREADCRUMB_LABELS: Record<string, string> = {
   'master-universal-ahen-rabota-po-vnutrenney-otdelke-aahen-germaniya': 'Мастер Универсал Ахен',
   'solnechnye-paneli-germagiya-montazh-solnechnyh-paneley-na-kryshah-podklyuchenie': 'Солнечные панели Германия',
   'elektrik-keln-essen-prokladka-steklovolokna': 'Электрик Кельн Эссен',
+  'Сантехник': 'Сантехник',
 } 
 
 
@@ -80,25 +81,27 @@ export function Breadcrumbs() {
           </BreadcrumbLink>
         </BreadcrumbItem>
 
-        {pathSegments.map((segment, index) => {
-          const href = '/' + pathSegments.slice(0, index + 1).join('/')
-          const isLast = index === pathSegments.length - 1
+       {pathSegments.map((segment, index) => {
+  const href = '/' + pathSegments.slice(0, index + 1).join('/')
+  const isLast = index === pathSegments.length - 1
+  const decodedSegment = decodeURIComponent(segment)
 
-          return (
-            <React.Fragment key={href}>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                {isLast ? (
-                  <BreadcrumbPage>{formatLabel(segment)}</BreadcrumbPage>
-                ) : (
-                  <BreadcrumbLink asChild>
-                    <Link href={href}>{formatLabel(segment)}</Link>
-                  </BreadcrumbLink>
-                )}
-              </BreadcrumbItem>
-            </React.Fragment>
-          )
-        })}
+  return (
+    <React.Fragment key={href}>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        {isLast ? (
+          <BreadcrumbPage>{formatLabel(decodedSegment)}</BreadcrumbPage>
+        ) : (
+          <BreadcrumbLink asChild>
+            <Link href={href}>{formatLabel(decodedSegment)}</Link>
+          </BreadcrumbLink>
+        )}
+      </BreadcrumbItem>
+    </React.Fragment>
+  )
+})}
+
       </BreadcrumbList>
     </Breadcrumb>
   )

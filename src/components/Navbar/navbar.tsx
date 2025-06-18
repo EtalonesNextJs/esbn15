@@ -40,7 +40,7 @@ const NavbarPage = () => {
             : "rgba(135, 11, 11, 1)"
         }}
       >
-        <div className="h-full flex items-center justify-between max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-full flex items-center justify-between max-w-screen-xl mx-auto px-5 ">
           <div className="flex items-center gap-8">
             <Logo />
 

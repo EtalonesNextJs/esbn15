@@ -12,7 +12,7 @@ const vacancyCache = new Map<string, Promise<any>>();
 //   })();
 //   return promise;
 // }
-export async function getVacanciesByProfessionGroupedByCity(profession: string) {
+export async function getVacanciesByProfessionGroupedByCity() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/vacancies-by-profession-grouped`, {
       next: { revalidate: 60 }, // ISR: кешируем на 60 сек

@@ -52,6 +52,9 @@ const VacanciesSchema = new Schema({
       salary: {
         type: String
       },
+      avSalary: {
+        type: String
+        },
       homePrice: {
         type: String
       },
