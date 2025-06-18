@@ -124,7 +124,7 @@ const VacanciesByCityAccordion = ({ city, vacancies, onVacancySelect,initialSlug
   key={initialSlug || "default"} // ключ заставит React пересоздать аккордеон
   type="single"
   collapsible
-  value={`item-${activeIndex}`}
+  value={undefined}
   onValueChange={(val) => {
     const index = parseInt(val?.replace("item-", "") ?? "0", 10);
     setActiveIndex(index);
