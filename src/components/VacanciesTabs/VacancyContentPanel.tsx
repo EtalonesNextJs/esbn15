@@ -36,8 +36,18 @@ export const VacancyContentPanel = ({
           {selectedVacancy && selectedVacancy.city === city ? (
   <VacancyDetailsCard vacancy={selectedVacancy} />
 ) : (
-  <div className="text-muted-foreground p-6 bg-gray-100 rounded-md text-center">
-    <p>Выберите вакансию из списка, чтобы увидеть подробности</p>
+  <div className="text-muted-foreground p-6 bg-gray-100 rounded-md text-center space-y-2">
+    <p className="mb-4">Выберите вакансию из списка:</p>
+
+    {grouped[city].map((vacancy) => (
+      <button
+        key={vacancy._id || vacancy.slug}
+        onClick={() => onVacancySelect(vacancy)}
+        className="underline text-blue-600 hover:text-blue-800 block"
+      >
+        {vacancy.title}
+      </button>
+    ))}
   </div>
 )}
 

@@ -103,7 +103,7 @@ const VacanciesByCityAccordion = ({ city, vacancies, onVacancySelect,initialSlug
   );
 
   return (
-    <div className="mb-12 w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div className="mb-12 w-full mx-auto flex justify-between gap-10">
       {/* Карусель */}
       <div className="flex flex-col gap-4">
         <CarouselImagesVacancy
@@ -119,7 +119,7 @@ const VacanciesByCityAccordion = ({ city, vacancies, onVacancySelect,initialSlug
 
       {/* Аккордеон */}
       <div>
-        <h2 className="text-2xl font-semibold mb-4">{city}</h2>
+        <h2 className="text-2xl text-end font-semibold mb-4">{city}</h2>
         <Accordion
   key={initialSlug || "default"} // ключ заставит React пересоздать аккордеон
   type="single"
@@ -130,7 +130,7 @@ const VacanciesByCityAccordion = ({ city, vacancies, onVacancySelect,initialSlug
     setActiveIndex(index);
     onVacancySelect?.(vacancies[index]);
   }}
-  className="w-full"
+  className="w-md flex gap-5 justify-end flex-wrap"
 >
 
       {vacancies.map(({ title, roof_type }, index) => (
@@ -139,10 +139,10 @@ const VacanciesByCityAccordion = ({ city, vacancies, onVacancySelect,initialSlug
               value={`item-${index}`}
               className="data-[state=open]:border-b-2 data-[state=open]:border-primary"
             >
-              <AccordionTrigger className="text-lg">{title}</AccordionTrigger>
-              <AccordionContent className="text-[17px] leading-relaxed text-muted-foreground">
+              <AccordionTrigger className="text-xs">{title}</AccordionTrigger>
+              {/* <AccordionContent className="text-[17px] leading-relaxed text-muted-foreground">
                 {roof_type}
-              </AccordionContent>
+              </AccordionContent> */}
             </AccordionItem>
           ))}
         </Accordion>

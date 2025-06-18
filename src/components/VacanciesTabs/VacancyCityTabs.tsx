@@ -13,13 +13,13 @@ type Props = {
 
 export const VacancyCityTabs = ({ cities, activeCity, onCityChange, grouped }: Props) => {
   return (
-    <div className="h-hull min-h-screen ">
+    <div className=" ">
     <TabsList className="flex flex-wrap gap-2 h-max col-span-1">
       {cities.map((city) => (
         <TabsTrigger
           key={city}
           value={city}
-          className="relative p-5 border border-gray-300 group"
+          className="relative py-2 px-5 border border-gray-300 group"
         >
           <p className="text-xs font-semibold">{city}</p>
           <Badge
