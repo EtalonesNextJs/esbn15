@@ -15,7 +15,7 @@ export default async function VacanciesLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { city?: string; vacancyId?: string; profession?: string; country?: string };
+  params: { city?: string; vacancyId?: string; title?: string; country?: string, slug?: string };
 }) {
     console.log("📦 layout params:", params);
   // Параметры, если нужны, пока не используешь
@@ -25,10 +25,10 @@ export default async function VacanciesLayout({
     <div className="max-w-screen-xl mx-auto px-5 ">
     <Breadcrumbs />
       <VacanciesTabs grouped={grouped}
-        profession={params.profession || ""}
+        profession={params.title || ""}
         country={params.country || ""}
         initialCity={params.city}
-        initialVacancyId={params.vacancyId} />
+        initialVacancyId={params.slug} />
       {children}
     </div>
   );

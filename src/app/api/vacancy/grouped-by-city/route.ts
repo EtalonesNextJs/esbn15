@@ -13,6 +13,6 @@ export async function GET() {
     acc[city].push(vacancy);
     return acc;
   }, {});
-
+  console.log("GROUPED", grouped);
   return NextResponse.json(grouped);
 }

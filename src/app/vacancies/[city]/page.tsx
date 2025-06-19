@@ -80,7 +80,8 @@ export async function generateMetadata(
 }
 
 export default async function VacanciesByCityPage({ params }: Props) {
-  const city = decodeURIComponent(params.city);
+const resolvedParams = await params;         
+  const city = decodeURIComponent(resolvedParams.city);  
   const vacancies = await fetchVacanciesByCity(city) || [];
 
   return (

@@ -35,18 +35,25 @@ export default function VacanciesTabs({
   const onCityChange = (city: string) => {
     setActiveCity(city);
     setSelectedVacancy(null);
-    router.push(`/vacancies/${city}/${profession}`, { scroll: false });
+    router.push(`/vacancies/${city}/${profession}`);
   };
 
   const onVacancySelect = (vacancy?: VacancyType | null) => {
     if (!vacancy) {
-      setSelectedVacancy(null);
-      router.push(`/vacancies/${activeCity}/${profession}`, { scroll: false });
-      return;
-    }
+  setSelectedVacancy(null);
+  if (segmentSlug) {
+    router.push(`/vacancies/${activeCity}/${profession}`);
+  }
+  return;
+}
+
 
     setSelectedVacancy(vacancy);
-    router.push(`/vacancies/${vacancy.city}/${profession}/${vacancy.title}`, { scroll: false });
+
+if (segmentSlug !== vacancy.slug) {
+  router.push(`/vacancies/${vacancy.city}/${profession}/${vacancy.title}`);
+}
+
   };
 
   useEffect(() => {
@@ -59,9 +66,7 @@ export default function VacanciesTabs({
 
     if (found && (!selectedVacancy || found.slug !== selectedVacancy.slug)) {
       setSelectedVacancy(found);
-    } else if (!found && selectedVacancy) {
-      setSelectedVacancy(grouped[cityFromURL][0] || null);
-    }
+    } 
   }, [segmentCity, segmentSlug, grouped]);
 
   if (cities.length === 0) {

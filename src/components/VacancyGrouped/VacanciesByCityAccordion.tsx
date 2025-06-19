@@ -90,11 +90,17 @@ const VacanciesByCityAccordion = ({ city, vacancies, onVacancySelect,initialSlug
   const foundIndex = vacancies.findIndex(v => v.slug === initialSlug);
   console.log("initialSlug", initialSlug);
   console.log("foundIndex", foundIndex);
+  
   if (foundIndex !== -1) {
     setActiveIndex(foundIndex);
     onVacancySelect?.(vacancies[foundIndex]);
+  } else {
+    console.warn(`Slug "${initialSlug}" not found in vacancies.`);
+    // 🔒 НЕ вызываем onVacancySelect — это предотвратит побочные эффекты (например, редирект)
+    // Можно даже setActiveIndex(0) или оставить всё как есть
   }
 }, [initialSlug, vacancies, onVacancySelect]);
+
 
   const images = vacancies.map((vac) =>
     Array.isArray(vac.imageFB)

@@ -1,19 +1,22 @@
-import { Metadata, ResolvingMetadata } from 'next'
-import { use } from 'react'
 
-interface Props {
-  params: {
+import { ActiveSectionProvider } from '@/components/VacancyDescription/components/active-section-provider'
+import VacancyDescription from '@/components/VacancyDescription/VacancyDescription'
+import { Metadata, ResolvingMetadata } from 'next'
+import { notFound } from 'next/navigation'
+
+type Props = {
+  params: Promise<{
     city: string
     profession: string
     slug: string
-  }
+  }>
 }
 
-// Функция для получения вакансии по slug из API (или напрямую из БД)
 async function fetchVacancyBySlug(slug: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/by-slug?slug=${encodeURIComponent(slug)}`, {
-    cache: 'no-store', // чтобы не кешировалось при генерации метаданных
-  })
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/by-slug?slug=${encodeURIComponent(slug)}`,
+    { cache: 'no-store' }
+  )
   if (!res.ok) return null
   return res.json()
 }
@@ -22,7 +25,8 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const vacancy = await fetchVacancyBySlug(params.slug)
+  const { city, profession, slug } = await params
+  const vacancy = await fetchVacancyBySlug(slug)
 
   if (!vacancy) {
     return {
@@ -34,7 +38,7 @@ export async function generateMetadata(
 
   const {
     title,
-    city,
+    city: cityFromVacancy,
     salary,
     work_descr,
     imageFB,
@@ -42,16 +46,18 @@ export async function generateMetadata(
     roof_type,
   } = vacancy
 
-  const cleanDescription = work_descr ? work_descr.replace(/<[^>]*>/g, '').slice(0, 160) : ''
-  const metaDescription = `${title} (${roof_type || ''}) в ${city}. Навыки: ${skills || ''}. ${cleanDescription} Зарплата: ${salary || ''}.`
+  const cleanDescription = work_descr
+    ? work_descr.replace(/<[^>]*>/g, '').slice(0, 160)
+    : ''
+  const metaDescription = `${title} (${roof_type || ''}) в ${cityFromVacancy}. Навыки: ${skills || ''}. ${cleanDescription} Зарплата: ${salary || ''}.`
 
-  const url = `https://etalones.com/vacancies/${encodeURIComponent(city)}/${encodeURIComponent(params.profession)}/${encodeURIComponent(params.slug)}`
+  const url = `https://etalones.com/vacancies/${encodeURIComponent(city)}/${encodeURIComponent(profession)}/${encodeURIComponent(slug)}`
 
   return {
-    title: `${title} – Работа в ${city} | Etalones`,
+    title: `${title} – Работа в ${cityFromVacancy} | Etalones`,
     description: metaDescription,
     openGraph: {
-      title: `${title} – Работа в ${city}`,
+      title: `${title} – Работа в ${cityFromVacancy}`,
       description: metaDescription,
       type: 'article',
       url,
@@ -60,7 +66,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} – Работа в ${city}`,
+      title: `${title} – Работа в ${cityFromVacancy}`,
       description: metaDescription,
       images: imageFB ? [imageFB] : undefined,
     },
@@ -79,20 +85,25 @@ export async function generateMetadata(
 }
 
 export default async function VacancyPage({ params }: Props) {
-  const vacancy = await fetchVacancyBySlug(params.slug)
+const { slug } = await params;
+  console.log('[Page] Opening slug:', slug);
 
-  if (!vacancy) {
-    return <h1>Вакансия не найдена</h1>
-  }
+  const vacancy = await fetchVacancyBySlug(slug);
+  console.log('[Page] Vacancy:', vacancy);
 
+  if (!vacancy) return notFound();
+
+  
   return (
+      <ActiveSectionProvider>
     <main className="max-w-screen-xl mx-auto p-5">
+      <VacancyDescription vacancy={vacancy} />
       <h1 className="text-3xl font-bold mb-4">{vacancy.title}</h1>
       <p><strong>Город:</strong> {vacancy.city}</p>
       <p><strong>Зарплата:</strong> {vacancy.salary}</p>
       <p><strong>Описание работы:</strong></p>
       <div dangerouslySetInnerHTML={{ __html: vacancy.work_descr || '' }} />
-      {/* Можно добавить больше деталей вакансии */}
     </main>
+      </ActiveSectionProvider>
   )
 }
