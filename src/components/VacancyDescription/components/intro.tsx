@@ -8,7 +8,7 @@ import { Icons } from './icons';
 import { useSectionInView } from '@/components/VacancyDescription/hooks/use-section-in-view';
 import { VacancyType } from '@/lib/types/vacancy';
 
-export const Intro = ({city, title, work_descr}: VacancyType) => {
+export const Intro = ({city, title, work_descr, status}: VacancyType) => {
   const { ref } = useSectionInView('Home');
 
   return (
@@ -26,15 +26,29 @@ export const Intro = ({city, title, work_descr}: VacancyType) => {
         }}
       >
         <Link
-          href="#contact"
-          className="flex items-center gap-3 rounded border px-3 py-1"
-        >
-          <span className="relative flex size-2">
-            <span className="absolute flex size-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative flex size-2 rounded-full bg-green-400"></span>
-          </span>
-          <span className="font-mono text-sm">Набор открыт!</span>
-        </Link>
+  href="#contact"
+  className={`flex items-center gap-3 rounded border px-3 py-1 ${
+    status === "open" ? "border-green-400" : "border-yellow-400"
+  }`}
+>
+  <span className="relative flex size-2">
+    {status === "open" ? (
+      <>
+        <span className="absolute flex size-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+        <span className="relative flex size-2 rounded-full bg-green-400"></span>
+      </>
+    ) : (
+      <>
+        <span className="absolute flex size-full animate-pulse rounded-full bg-yellow-400 opacity-75"></span>
+        <span className="relative flex size-2 rounded-full bg-yellow-400"></span>
+      </>
+    )}
+  </span>
+  <span className="font-mono text-sm">
+    {status === "open" ? "Набор открыт!" : "Набор приостановлен"}
+  </span>
+</Link>
+
       </motion.div>
       <motion.h1
         initial={{ opacity: 0, y: 100 }}

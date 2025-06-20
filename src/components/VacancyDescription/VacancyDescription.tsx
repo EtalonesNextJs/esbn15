@@ -1,34 +1,11 @@
-// import { VacancyType } from "@/lib/types/vacancy";
-// import { About } from "./components/about";
-// import { Contact } from "./components/contact";
-// import { Experience } from "./components/experience";
-// import { Header } from "./components/header";
-// import { Intro } from "./components/intro";
-// import { Projects } from "./components/projects";
-// import { SectionDivider } from "./components/section-divider";
-
-
-// export default function VacancyDescription({ vacancy }: { vacancy: VacancyType }) {
-//   return (
-//    <div className="container flex flex-col items-center">
-//         <Header {...vacancy} />
-//         <Intro {...vacancy}/>
-//         <SectionDivider />
-//         <About {...vacancy}/>
-//         <Experience />
-//         <Projects />
-//         <Contact />
-//       </div>
-//   );
-// }
 import { VacancyType } from "@/lib/types/vacancy";
 import { About } from "./components/about";
 import { Contact } from "./components/contact";
-import { Experience } from "./components/experience";
 import { Header } from "./components/header";
 import { Intro } from "./components/intro";
 import { Projects } from "./components/projects";
 import { SectionDivider } from "./components/section-divider";
+import Blog from "./components/blog";
 
 async function fetchVacanciesByTitle(city: string, title: string) {
   const res = await fetch(
@@ -53,7 +30,7 @@ export default async function VacancyDescription({ vacancy }: { vacancy: Vacancy
       <Intro {...vacancy} />
       <SectionDivider />
       <About {...vacancy} />
-      <Experience />
+      <Blog />
       <Projects vacancies={recommendedVacancies} />
       <Contact />
     </div>

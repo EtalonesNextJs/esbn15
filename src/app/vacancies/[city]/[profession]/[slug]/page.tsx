@@ -86,10 +86,8 @@ export async function generateMetadata(
 
 export default async function VacancyPage({ params }: Props) {
 const { slug } = await params;
-  console.log('[Page] Opening slug:', slug);
 
   const vacancy = await fetchVacancyBySlug(slug);
-  console.log('[Page] Vacancy:', vacancy);
 
   if (!vacancy) return notFound();
 
@@ -98,11 +96,11 @@ const { slug } = await params;
       <ActiveSectionProvider>
     <main className="max-w-screen-xl mx-auto p-5">
       <VacancyDescription vacancy={vacancy} />
-      <h1 className="text-3xl font-bold mb-4">{vacancy.title}</h1>
+      {/* <h1 className="text-3xl font-bold mb-4">{vacancy.title}</h1>
       <p><strong>Город:</strong> {vacancy.city}</p>
       <p><strong>Зарплата:</strong> {vacancy.salary}</p>
       <p><strong>Описание работы:</strong></p>
-      <div dangerouslySetInnerHTML={{ __html: vacancy.work_descr || '' }} />
+      <div dangerouslySetInnerHTML={{ __html: vacancy.work_descr || '' }} /> */}
     </main>
       </ActiveSectionProvider>
   )

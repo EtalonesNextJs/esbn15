@@ -54,20 +54,20 @@ export const Contact = () => {
       }}
     >
       <SectionHeading
-        heading="Get In Touch"
+        heading="Анкетирование на сайте"
         content={
           <>
-            Please contact me directly at{' '}
+            Отправьте ваше резюме на почту{' '}
             <Button
               variant="link"
               className="text-muted-foreground hover:text-foreground h-fit p-0 font-medium underline transition-colors"
               asChild
             >
-              <Link href="mailto:skolakmichal1@gmail.com">
-                skolakmichal1@gmail.com
+              <Link href="mailto:info@etalones.com">
+                info@etalones.com
               </Link>
             </Button>{' '}
-            or through this form.
+            или заполните эту форму.
           </>
         }
       />

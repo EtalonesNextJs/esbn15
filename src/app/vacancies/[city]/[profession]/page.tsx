@@ -225,8 +225,8 @@ export default async function VacancyProfessionPage({ params }: { params: Promis
   
 
   return (
-    <div className="p-5">
-      <h1 className="text-2xl font-bold mb-4">Похожие вакансии {decodedProfession} в других городах</h1>
+    <div className="p-0">
+      {/* <h1 className="text-2xl font-bold mb-4">Похожие вакансии {decodedProfession} в других городах</h1>
 
       {vacancies.length === 0 ? (
         <p>Вакансии не найдены.</p>
@@ -242,7 +242,7 @@ export default async function VacancyProfessionPage({ params }: { params: Promis
         </ul>
       )}
 
-      <hr className="my-8" />
+      <hr className="my-8" /> */}
 
      
     </div>

@@ -3,11 +3,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import { CustomIcons } from '@/components/icons/iconsHome';
 import { SectionHeading } from './section-heading';
 import { useSectionInView } from '@/components/VacancyDescription/hooks/use-section-in-view';
 import { experiencesData } from '../lib/data';
 import { cn } from '@/lib/utils';
+import { Icons } from './icons';
 
 export const Experience = () => {
   const { ref: sectionRef } = useSectionInView('Experience');
@@ -48,14 +48,14 @@ export const Experience = () => {
               >
                 <div className="flex items-center gap-3">
                   <div className="flex size-9 shrink-0 items-center justify-center rounded-full border">
-                    <CustomIcons.mashineWash className="size-5" />
+                    <Icons.building className="size-5" />
                   </div>
                   <span className="text-lg font-semibold">{company}</span>
                 </div>
                 <div>
                   <h3 className="text-xl font-medium">{title}</h3>
                   <div className="mt-1 flex items-center gap-2 text-sm">
-                    <CustomIcons.mashineWash className="size-4" />
+                    <Icons.calendar className="size-4" />
                     <span>{period}</span>
                   </div>
                 </div>

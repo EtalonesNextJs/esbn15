@@ -22,8 +22,9 @@ export function VacancyButton({
   const href = `/vacancies/${encodedCity}/${encodedTitle}/${encodedSlug}`;
 
   return (
+   
     <Link href={href} passHref>
-      <button type="button" className="btn btn-primary">
+      <button type="button" className="flex items-center gap-3 rounded border px-3 py-1 border-green-400 cursor-pointer hover:border-green-500 hover:transform hover:scale-105 transition-all duration-200">
         {label}
       </button>
     </Link>

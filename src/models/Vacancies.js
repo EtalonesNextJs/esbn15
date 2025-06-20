@@ -43,6 +43,9 @@ const VacanciesSchema = new Schema({
    last: {
     type: Boolean,
   },
+  status: {
+    type: String,
+  },
       auto: {
         type: String
       },

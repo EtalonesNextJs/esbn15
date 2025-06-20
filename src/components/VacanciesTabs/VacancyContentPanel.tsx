@@ -24,7 +24,7 @@ export const VacancyContentPanel = ({
   initialSlug,
 }: Props) => {
   return (
-    <div className="col-span-3">
+    <div className="md:col-span-3">
       {cities.map((city) => (
         <TabsContent key={city} value={city}>
           <VacanciesByCityAccordion

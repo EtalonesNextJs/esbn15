@@ -77,7 +77,7 @@ if (segmentSlug !== vacancy.slug) {
     <Tabs
       value={activeCity}
       onValueChange={onCityChange}
-      className="w-full max-w-screen-xl grid grid-cols-4 gap-4"
+      className="w-full max-w-screen-xl grid md:grid-cols-4 gap-4"
     >
       <VacancyCityTabs
         cities={cities}

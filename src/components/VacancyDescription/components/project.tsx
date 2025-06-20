@@ -54,8 +54,8 @@ const encodedCity = encodeURIComponent(vacancy.city || "");
         <Image
           src={imageFB || '/images/logo/logo-red.png'}
           alt={'e'}
-          height={390}
-          width={600}
+          height={350}
+          width={400}
           className="rounded transition-transform hover:scale-105"
         />
       </Link>

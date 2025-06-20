@@ -80,22 +80,10 @@ export async function generateMetadata(
 }
 
 export default async function VacanciesByCityPage({ params }: Props) {
-const resolvedParams = await params;         
-  const city = decodeURIComponent(resolvedParams.city);  
-  const vacancies = await fetchVacanciesByCity(city) || [];
 
   return (
-    <main>
-      <h1>Вакансии в городе {city}</h1>
-      {vacancies.length === 0 && <p>Вакансии не найдены.</p>}
-      {vacancies.map((vacancy: any) => (
-        <article key={vacancy._id}>
-          <h2>{vacancy.title}</h2>
-          <p>{vacancy.work_descr}</p>
-          <p><strong>Зарплата:</strong> {vacancy.salary}</p>
-          <p><strong>Навыки:</strong> {vacancy.skills}</p>
-        </article>
-      ))}
-    </main>
+    <>
+
+    </>
   );
 }

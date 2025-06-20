@@ -31,7 +31,7 @@ export const Header = (vacancy: VacancyType) => {
       animate={{ y: 0, opacity: 1 }}
       className="sm:bg-background/80 sticky top-5 z-20 my-5 flex items-center gap-2 sm:top-20 sm:my-10 sm:rounded-full sm:border sm:px-2 sm:py-3 sm:backdrop-blur-sm"
     >
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      {/* <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <Button
             variant="outline"
@@ -63,8 +63,8 @@ export const Header = (vacancy: VacancyType) => {
             </ul>
           </nav>
         </DialogContent>
-      </Dialog>
-      <ThemeToggle className="bg-background/80 backdrop-blur-sm sm:hidden" />
+      </Dialog> */}
+      {/* <ThemeToggle className="bg-background/80 backdrop-blur-sm sm:hidden" /> */}
       <nav className="text-muted-foreground hidden text-sm sm:block">
         <ul className="flex gap-5">
           {links.map(({ name, hash }) => (

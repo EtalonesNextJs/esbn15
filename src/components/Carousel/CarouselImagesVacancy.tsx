@@ -120,8 +120,8 @@ export function CarouselImagesVacancy({
         {images.map((image, index) => (
           <CarouselItem key={index}>
             <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-video items-center justify-center p-2">
+              <div>
+                <div className="flex aspect-video items-center justify-center p-2">
                   <Image
                     src={image}
                     alt={`Vacancy image ${index + 1}`}
@@ -129,8 +129,8 @@ export function CarouselImagesVacancy({
                     height={250}
                     className="rounded-md object-cover w-full h-full"
                   />
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
           </CarouselItem>
         ))}
