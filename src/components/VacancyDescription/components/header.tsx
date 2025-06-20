@@ -19,7 +19,6 @@ import { links } from '../lib/data';
 import { VacancyType } from '@/lib/types/vacancy';
 
 export const Header = (vacancy: VacancyType) => {
-      console.log("VACANCYPROPS", vacancy);
 
   const [isOpen, setIsOpen] = useState(false);
   const { activeSection, setActiveSection, setTimeOfLastClick } =

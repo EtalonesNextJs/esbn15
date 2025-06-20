@@ -1,6 +1,6 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
-
+import Link from 'next/link';
 type Props = {
   params: { slug: string };
 };
@@ -70,12 +70,30 @@ export async function generateMetadata(
   };
 }
 
+function getHref(baseUrl: string, path?: string) {
+  if (!path) return "#";
+  
+  // если path абсолютный URL
+  try {
+    const url = new URL(path);
+    return url.toString();
+  } catch {
+    // Если нет — добавляем baseUrl
+    try {
+      const url = new URL(path, baseUrl);
+      return url.toString();
+    } catch {
+      return "#";
+    }
+  }
+}
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params; // await здесь тоже обязателен!
 
-  const blog = await fetchBlogBySlug(slug);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
+  const blog = await fetchBlogBySlug(slug);
   if (!blog) return notFound();
 
   return (
@@ -91,14 +109,23 @@ export default async function BlogPostPage({ params }: Props) {
         )}
         <p className="mb-8 text-lg text-gray-700">{blog.description}</p>
 
-        {blog.content.map((section: any, idx: number) => (
-          <section key={idx} className="mb-10">
-            <h2 className="text-2xl font-semibold mb-3">{section.title}</h2>
-            <p className="whitespace-pre-line leading-relaxed text-lg">
-              {section.content}
-            </p>
-          </section>
-        ))}
+        {blog.content.map((section: any, idx: number) => {
+  const href = getHref(baseUrl, section.link);
+
+  return (
+    <section key={idx} className="mb-10">
+      <h2 className="text-2xl font-semibold mb-3">
+        <Link className="text-primary hover:text-primary/80" href={href}>
+          {section.title}
+        </Link>
+      </h2>
+      <p className="whitespace-pre-line leading-relaxed text-lg">
+        {section.content}
+      </p>
+    </section>
+  );
+})}
+
       </article>
     </main>
   );

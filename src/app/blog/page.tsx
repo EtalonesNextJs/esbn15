@@ -178,8 +178,8 @@ const BlogPage = () => {
     async function fetchPosts() {
       try {
         const url = selectedCategory
-          ? `/api/posts?category=${encodeURIComponent(selectedCategory)}`
-          : '/api/posts';
+          ? `/api/blog?category=${encodeURIComponent(selectedCategory)}`
+          : '/api/blog';
         const res = await fetch(url);
         const data = await res.json();
         setPosts(data.posts || []);

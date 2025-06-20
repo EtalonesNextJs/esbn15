@@ -1,5 +1,7 @@
 import { Schema, model, models, Types } from "mongoose";
 import { Vacancies } from "./Vacancies";
+import { type } from "os";
+import { link } from "fs";
 const BlogSchema = new Schema(
   {
     imageFB: [
@@ -40,7 +42,8 @@ const BlogSchema = new Schema(
     },
 
     content: [
-      {
+      { 
+        link: String,
         title: String, // подзаголовок
         content: String, // HTML или markdown
       },
@@ -56,7 +59,10 @@ const BlogSchema = new Schema(
     city: {
       type: String,
     },
-
+    link:{
+      type: String,
+    }
+,
     titleKeyword: {
       type: String, // ключевое слово, например: "гипсокартонщик"
     },

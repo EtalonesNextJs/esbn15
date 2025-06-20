@@ -45,7 +45,7 @@ export type VacancyType = {
     pDocs?: string[];
     candidates?: string[]; 
     slug?: string;
-    
+    category?: string;
   };
 
  export type VacancyParams = {
