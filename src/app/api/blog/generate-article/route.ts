@@ -137,7 +137,12 @@ export async function POST(request: NextRequest) {
       ],
     });
 
-    const content = completion.choices[0]?.message?.content?.trim();
+let content = completion.choices[0]?.message?.content?.trim();
+
+// Удаляем ```json и ```
+if (content?.startsWith("```json")) {
+  content = content.replace(/^```json\s*/, "").replace(/```$/, "").trim();
+}
 
     if (!content) {
       return NextResponse.json({ error: "Пустой ответ от модели." }, { status: 500 });
