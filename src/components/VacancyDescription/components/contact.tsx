@@ -15,7 +15,7 @@ import { formSchema, TFormSchema } from '../lib/form-schema';
 import { cn } from '@/lib/utils';
 
 export const Contact = () => {
-  const { ref } = useSectionInView('Contact');
+  const { ref } = useSectionInView('Анкета');
   const {
     register,
     handleSubmit,

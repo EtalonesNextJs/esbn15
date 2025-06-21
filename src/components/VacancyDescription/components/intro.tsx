@@ -9,7 +9,7 @@ import { useSectionInView } from '@/components/VacancyDescription/hooks/use-sect
 import { VacancyType } from '@/lib/types/vacancy';
 
 export const Intro = ({city, title, work_descr, status}: VacancyType) => {
-  const { ref } = useSectionInView('Home');
+  const { ref } = useSectionInView('Начало');
 
   return (
     <section

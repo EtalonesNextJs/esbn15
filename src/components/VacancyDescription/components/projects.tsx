@@ -5,11 +5,10 @@ import { motion } from 'framer-motion';
 import { Project } from './project';
 import { SectionHeading } from './section-heading';
 import { useSectionInView } from '@/components/VacancyDescription/hooks/use-section-in-view';
-import { projectsData } from '../lib/data';
 import { VacancyType } from '@/lib/types/vacancy';
 
 export const Projects = ({ vacancies }: { vacancies: VacancyType[] }) => {
-  const { ref } = useSectionInView('Projects');
+  const { ref } = useSectionInView('Похожие вакансии');
 
   return (
     <section ref={ref} id="projects" className="my-10 scroll-mt-28 md:mb-20">

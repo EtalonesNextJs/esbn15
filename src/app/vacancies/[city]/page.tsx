@@ -2,10 +2,12 @@
 
 import { Metadata, ResolvingMetadata } from "next";
 
-interface Props {
-  params: {
-    city: string;
-  };
+
+type Props = {
+  params: Promise<{
+    city: string
+    
+  }>
 }
 
 // Функция для запроса вакансий по городу с твоего API
@@ -22,8 +24,7 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const city = decodeURIComponent(params.city);
-
+  const { city } = await params;
   const vacancies = await fetchVacanciesByCity(city);
 
   if (!vacancies || vacancies.length === 0) {

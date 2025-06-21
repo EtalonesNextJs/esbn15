@@ -27,7 +27,7 @@ export type VacancyType = {
     description?: string;
     location?: string;
     city?: string;
-    country: string;
+    country?: string;
     date?: string;
     status?: string;
     skills?: string;

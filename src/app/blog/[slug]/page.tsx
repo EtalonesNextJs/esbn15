@@ -1,9 +1,7 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-type Props = {
-  params: { slug: string };
-};
+
 
 // Получение статьи по slug через API
 async function fetchBlogBySlug(slug: string) {
@@ -87,13 +85,19 @@ function getHref(baseUrl: string, path?: string) {
     }
   }
 }
+type Props = {
+  params: Promise<{
+    slug: string
+  }>
+}
+
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params; // await здесь тоже обязателен!
+  const { slug } = await params; 
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
   const blog = await fetchBlogBySlug(slug);
+  
   if (!blog) return notFound();
 
   return (
@@ -110,7 +114,7 @@ export default async function BlogPostPage({ params }: Props) {
         <p className="mb-8 text-lg text-gray-700">{blog.description}</p>
 
         {blog.content.map((section: any, idx: number) => {
-  const href = getHref(baseUrl, section.link);
+  const href = getHref(section.link);
 
   return (
     <section key={idx} className="mb-10">

@@ -3,18 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-
 import { useActiveSection } from './active-section-provider';
-import { Button } from './button';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from './dialog';
-import { Icons } from './icons';
-import { ThemeToggle } from './theme-toggle';
 import { links } from '../lib/data';
 import { VacancyType } from '@/lib/types/vacancy';
 

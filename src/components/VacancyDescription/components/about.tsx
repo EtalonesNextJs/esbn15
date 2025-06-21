@@ -8,7 +8,7 @@ import { useSectionInView } from '@/components/VacancyDescription/hooks/use-sect
 import { VacancyType } from '@/lib/types/vacancy';
 
 export const About = ({city, title, work_descr, home_descr}: VacancyType) => {
-  const { ref } = useSectionInView('About');
+  const { ref } = useSectionInView('О работе');
 
   return (
     <motion.section

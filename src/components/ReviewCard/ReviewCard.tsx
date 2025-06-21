@@ -101,7 +101,7 @@ import { Drawer, DrawerTrigger } from "../ui/drawer";
 import Link from "next/link";
 
 const VacancyCard = ({ vacancy }: { vacancy: VacancyType }) => {
-  // Если данных нет, просто не отображать карточку
+
   if (!vacancy) return null;
 
   return (
