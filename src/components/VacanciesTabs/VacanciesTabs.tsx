@@ -14,6 +14,7 @@ type Props = {
   country: string;
   initialCity?: string;
   initialVacancyId?: string;
+  showFilters?: boolean;
 };
 
 export default function VacanciesTabs({
@@ -21,6 +22,7 @@ export default function VacanciesTabs({
   profession,
   country,
   initialCity,
+  showFilters = true
 }: Props) {
   const router = useRouter();
   const segments = useSelectedLayoutSegments();
@@ -84,6 +86,7 @@ if (segmentSlug !== vacancy.slug) {
         activeCity={activeCity}
         onCityChange={onCityChange}
         grouped={grouped}
+        showFilters={showFilters}
       />
       <VacancyContentPanel
         cities={cities}
@@ -92,6 +95,7 @@ if (segmentSlug !== vacancy.slug) {
         selectedVacancy={selectedVacancy}
         onVacancySelect={onVacancySelect}
         initialSlug={segmentSlug}
+        showFilters={showFilters}
       />
     </Tabs>
   );
