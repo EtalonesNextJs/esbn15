@@ -1,6 +1,5 @@
-import Vacancies from "@/models/Vacancies";
-import { connectDB } from "../db";
-
+import Vacancies from '@/models/Vacancies';
+import { connectDB } from '../db';
 
 export async function getVacanciesByType(type: string) {
   await connectDB();

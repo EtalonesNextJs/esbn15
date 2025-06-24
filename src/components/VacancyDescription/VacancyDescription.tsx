@@ -6,15 +6,16 @@ import { Intro } from "./components/intro";
 import { Projects } from "./components/projects";
 import { SectionDivider } from "./components/section-divider";
 import Blog from "./components/blog";
+import { fetchVacanciesByProfession } from "@/lib/api/api";
 
-async function fetchVacanciesByTitle(city: string, title: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/vacancy/by-title?city=${encodeURIComponent(city)}&title=${encodeURIComponent(title)}`,
-    { cache: 'no-store' }
-  );
-  if (!res.ok) return [];
-  return res.json();
-}
+// async function fetchVacanciesByTitle(city: string, title: string) {
+//   const res = await fetch(
+//     `${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/vacancy/by-title?city=${encodeURIComponent(city)}&title=${encodeURIComponent(title)}`,
+//     { cache: 'no-store' }
+//   );
+//   if (!res.ok) return [];
+//   return res.json();
+// }
 async function fetchArticleByCategory(category: string) {
   try {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/by-category?category=${encodeURIComponent(category)}`;
@@ -43,13 +44,13 @@ async function fetchRelatedPosts(category: string, excludeSlug: string) {
 }
 
 export default async function VacancyDescription({ vacancy }: { vacancy: VacancyType }) {
-  const { city, title, category } = vacancy;
-console.log({ city, title, category });
+  const { city, profession, category } = vacancy;
+console.log({ city, profession, category });
 
   const decodedCity = decodeURIComponent(city || "");
-  const decodedTitle = decodeURIComponent(title || "");
+  const decodedTitle = decodeURIComponent(profession || "");
 
-  const recommendedVacancies = await fetchVacanciesByTitle(decodedCity, decodedTitle);
+  const recommendedVacancies = await fetchVacanciesByProfession(decodedCity, decodedTitle);
   const article = await fetchArticleByCategory(category || "");
   const related = article?.slug
     ? await fetchRelatedPosts(category || "", article.slug)

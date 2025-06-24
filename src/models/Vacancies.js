@@ -15,6 +15,9 @@ const VacanciesSchema = new Schema({
   title: {
     type: String
   },
+  profession:{
+    type: String
+  },
   place: {
     type: Number
   },

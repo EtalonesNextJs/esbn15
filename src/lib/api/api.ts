@@ -81,4 +81,12 @@ export async function getVacancyBySlug(slug: string) {
   }
 }
 
+export async function fetchVacanciesByProfession(city: string, profession: string) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/vacancy/by-title?city=${encodeURIComponent(city)}&profession=${encodeURIComponent(profession)}`,
+    { cache: 'no-store' }
+  );
+  if (!res.ok) return null;
+  return res.json();
+}
 

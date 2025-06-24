@@ -16,10 +16,10 @@ export function VacancyButton({
   label = "Подробнее"
 }: VacancyButtonProps) {
   const encodedCity = encodeURIComponent(city);
-  const encodedTitle = encodeURIComponent(title);
+  const encodedProfession = encodeURIComponent(profession);
   const encodedSlug = encodeURIComponent(slug);
 
-  const href = `/vacancies/${encodedCity}/${encodedTitle}/${encodedSlug}`;
+  const href = `/vacancies/${encodedCity}/${encodedProfession}/${encodedSlug}`;
 
   return (
    

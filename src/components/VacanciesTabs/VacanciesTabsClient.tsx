@@ -1,7 +1,7 @@
 'use client';
 
 import VacanciesTabs from "@/components/VacanciesTabs/VacanciesTabs";
-import { Filter } from "lucide-react";
+import {  ArrowDown, ArrowUp} from "lucide-react"; 
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { useFilter } from "@/context/FilterContext";
 
@@ -24,15 +24,23 @@ export default function VacanciesTabsClient({
 
   return (
     <div className="w-full mb-5">
-      <div className="flex justify-between items-center mb-3">
+      <div className="w-full flex justify-between flex-wrap items-center mb-3">
         <Breadcrumbs />
-        <button
-          className="p-2 hover:bg-gray-100 rounded"
-          onClick={toggleFilter}
-          title="Фильтр"
-        >
-        <p>Быстрая навигация</p>
-        </button>
+       <button
+  className="p-2 hover:bg-gray-100 rounded"
+  onClick={toggleFilter}
+  title="Фильтр"
+>
+  <div className="text-md font-medium w-max flex items-center gap-1">
+    Быстрая навигация{" "}
+    {isOpen ? (
+      <ArrowUp className="transition-transform duration-200" />
+    ) : (
+      <ArrowDown className="transition-transform duration-200" />
+    )}
+  </div>
+</button>
+
       </div>
 
       <VacanciesTabs

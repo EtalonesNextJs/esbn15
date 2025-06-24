@@ -39,6 +39,7 @@
 
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { formatLabel } from "@/lib/labels";
 
 type Props = {
   cities: string[];
@@ -59,7 +60,7 @@ export const VacancyCityTabs = ({ cities, activeCity, onCityChange, grouped, sho
               value={city}
               className="relative py-2 px-5 border border-gray-300 group"
             >
-              <p className="text-xs font-semibold">{city}</p>
+              <p className="text-xs font-semibold">{formatLabel(city)}</p>
               <Badge
                 variant="secondary"
                 className="bg-none p-auto text-gray-500 text-xs rounded-full absolute top-0 right-0"

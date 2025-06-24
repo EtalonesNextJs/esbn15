@@ -20,7 +20,6 @@ type Props = {
 export default function VacanciesTabs({
   grouped,
   profession,
-  country,
   initialCity,
   showFilters = true
 }: Props) {
@@ -53,7 +52,7 @@ export default function VacanciesTabs({
     setSelectedVacancy(vacancy);
 
 if (segmentSlug !== vacancy.slug) {
-  router.push(`/vacancies/${vacancy.city}/${profession}/${vacancy.title}`);
+  router.push(`/vacancies/${vacancy.city}/${profession}/${vacancy.profession}`);
 }
 
   };

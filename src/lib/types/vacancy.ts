@@ -22,6 +22,7 @@ export type VacancyType = {
     homePrice?: string;
     roof_type?: string;
     title?: string;
+    profession?:string
   _id?:string  
   id?: string;
     description?: string;

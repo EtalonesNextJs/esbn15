@@ -11,7 +11,7 @@ interface Params {
   };
 }
 
-export const dynamic = 'force-dynamic'; // отключаем кэширование
+export const dynamic = 'force-dynamic'; 
 
 const translateType = (type: string) => {
   switch (type) {

@@ -109,7 +109,7 @@ export const VacancyDetailsCard = ({ vacancy }: Props) => {
               </li>
               <li> Стоимость проживания: {vacancy.homePrice}</li>
               </ul>
-              <VacancyButton city={vacancy.city || ""} profession={vacancy.title || ""} slug={vacancy.slug || ""} title={vacancy.title || ""} />
+              <VacancyButton title={vacancy.title || ""} city={vacancy.city || ""} profession={vacancy.profession || ""} slug={vacancy.slug || ""}  />
           </div></>
   );
 };

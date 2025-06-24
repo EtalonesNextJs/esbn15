@@ -13,6 +13,15 @@ module.exports = {
           background: "#116948", 
           text: "#212121", // Основной текст
         },
+        keyframes: {
+        shine: {
+          '0%': { 'background-position': '100%' },
+          '100%': { 'background-position': '-100%' },
+        },
+      },
+      animation: {
+        shine: 'shine 5s linear infinite',
+      },
       },
     },
     plugins: [],

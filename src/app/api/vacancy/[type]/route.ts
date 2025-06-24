@@ -1,8 +1,12 @@
-import { getVacanciesByType } from '@/lib/api/vacancyService';
 import { NextResponse } from 'next/server';
+import { getVacanciesByType } from '@/lib/api/vacancyService';
+import type { NextRequest } from 'next/server';
 
-export async function GET(req: Request, { params }: { params: { type: string } }) {
-  const { type } = params;
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ type: string }> }
+) {
+  const { type } = await params;
 
   const allowedTypes = ['all', 'new', 'indor', 'outdor', 'electric', 'sanitary'];
   if (!allowedTypes.includes(type)) {
@@ -13,7 +17,7 @@ export async function GET(req: Request, { params }: { params: { type: string } }
     const vacancies = await getVacanciesByType(type);
     return NextResponse.json(vacancies);
   } catch (error) {
-    console.error(error);
+    console.error('Server error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

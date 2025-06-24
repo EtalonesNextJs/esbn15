@@ -128,7 +128,7 @@ export default function VacancyCard({ vacancy }: { vacancy: VacancyType }) {
     // Серверный рендер — выводим просто ссылку на страницу вакансии
     return (
       <Link
-        href={`/vacancy/${slug}`}
+        href={slug}
         className="block w-full max-w-[400px] p-4 border rounded-lg shadow hover:shadow-md transition"
       >
         <h3 className="text-xl font-semibold">{vacancy.title}</h3>

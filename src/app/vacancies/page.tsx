@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Все вакансии в Европе | ESBN",
     description: "Актуальные вакансии по профессиям и странам. Условия, жильё, зарплата — всё в одном месте.",
-    url: "https://example.com/vacancies",
+    url: "https://etalones.com/vacancies",
     siteName: "ESBN",
     images: [
       {
-        url: "https://example.com/og-image.jpg",
+        url: "https://etalones.com/svg/Logo.svg",
         width: 1200,
         height: 630,
       },
