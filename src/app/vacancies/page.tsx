@@ -1,35 +1,19 @@
-import { Metadata } from "next";
-import VacanciesCategoryPage from "./categories/page";
+import Categories from '@/components/Categories/Categories';
 
+const categories = [
+  { key: 'beton', name: 'Бетон' },
+  { key: 'electric', name: 'Электрика' },
+  { key: 'indor', name: 'Внутренние работы' },
+  { key: 'kamen', name: 'Каменная кладка' },
+  { key: 'montazh', name: 'Монтаж' },
+  { key: 'noexp', name: 'Без опыта' },
+  { key: 'krovlya', name: 'Кровля' },
+  { key: 'santehnic', name: 'Сантехника' },
+  { key: 'tehnic', name: 'Техника' },
+];
 
+export const revalidate = false;
 
-
-
-export const metadata: Metadata = {
-  title: "Все вакансии в Европе | ESBN",
-  description: "Поиск работы в Европе. Все актуальные вакансии с жильём, достойной зарплатой и официальным оформлением.",
-  openGraph: {
-    title: "Все вакансии в Европе | ESBN",
-    description: "Актуальные вакансии по профессиям и странам. Условия, жильё, зарплата — всё в одном месте.",
-    url: "https://etalones.com/vacancies",
-    siteName: "ESBN",
-    images: [
-      {
-        url: "https://etalones.com/svg/Logo.svg",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "ru_RU",
-    type: "website",
-  },
-};
-
-export default async function VacancyProfessionPage() {
-  
-  return (
-    <>
-      <VacanciesCategoryPage/>
-    </>
-  );
+export default function VacanciesPage() {
+  return <Categories categories={categories} />;
 }

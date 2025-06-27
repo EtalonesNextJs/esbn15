@@ -92,18 +92,17 @@ export async function fetchVacanciesByProfession(city: string, profession: strin
 
 
 
+export async function getCategories() {
+  const base = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://etalones.com';
 
-export async function fetchCategories() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/vacancies/categories`,
-    { cache: 'no-store' }
-  );
-
-  if (!res.ok) {
-    console.error("Failed to fetch categories:", res.statusText);
-    return [];
+  const res = await fetch(`${base}/api/vacancies/categories`, {
+    next: { revalidate: 60 },
+  });
+ if (!res.ok) {
+    throw new Error('Failed to fetch categories');
   }
 
   const data = await res.json();
-  return data.categories || [];
-}
+  return data.categories || [];}
