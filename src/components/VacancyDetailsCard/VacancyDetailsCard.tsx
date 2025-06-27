@@ -10,7 +10,6 @@ type Props = {
 };
 
 export const VacancyDetailsCard = ({ vacancy }: Props) => {
-    console.log("Vacancy", vacancy);
   if (!vacancy) return null;
 
   return (

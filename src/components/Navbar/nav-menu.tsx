@@ -15,13 +15,14 @@ import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { vacancyMenuItems, userfulMenuItems, partnersMenuItems } from "./config";
+import { LoadingLink } from "../LoadingLink/LoadingLink";
 
 export const NavMenu = (props: NavigationMenuProps) => (
     <NavigationMenu {...props}>
       <NavigationMenuList className="gap-0 space-x-0 text-sm text-white ">
         <NavigationMenuItem>
           <Button variant="ghost" className="text-[1.1rem] font-normal" asChild>
-            <Link href="/">Главная</Link>
+            <LoadingLink href="/">Главная</LoadingLink>
           </Button>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -65,7 +66,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Button variant="ghost" className="text-[1.1rem] font-normal" asChild>
-            <Link href="/reviews">Отзывы</Link>
+            <LoadingLink href="/reviews">Отзывы</LoadingLink>
           </Button>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -89,7 +90,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Button variant="ghost" className="text-[1.1rem] font-normal" asChild>
-            <Link href="/contacts">Контакты</Link>
+            <LoadingLink href="/contacts">Контакты</LoadingLink>
           </Button>
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -103,7 +104,7 @@ const ListItem = React.forwardRef<
   return (
     <li>
       <NavigationMenuLink asChild>
-        <Link
+        <LoadingLink
           href={href}
           ref={ref}
           className={cn(
@@ -117,7 +118,7 @@ const ListItem = React.forwardRef<
           <p className="line-clamp-2 text-md leading-snug text-muted-foreground">
             {children}
           </p>
-        </Link>
+        </LoadingLink>
       </NavigationMenuLink>
     </li>
   );

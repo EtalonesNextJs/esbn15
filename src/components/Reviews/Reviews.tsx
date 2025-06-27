@@ -1,253 +1,236 @@
-'use client'
-import { Avatar } from "@/components/ui/avatar";
-import { Review } from "@/lib/types/interfaces";
-import { StarIcon } from "lucide-react";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { AspectRatio } from "@radix-ui/react-aspect-ratio";
-// import {  useSession } from "next-auth/react";
-// import { signIn } from "@/lib/auth";
-// import { Button } from "../ui/button";
 
+'use client'
+
+import { useEffect, useState, useRef } from 'react'
+import Image from 'next/image'
+import { Avatar } from "@/components/ui/avatar"
+import { AspectRatio } from "@radix-ui/react-aspect-ratio"
+import { StarIcon } from "lucide-react"
+import { Review } from "@/lib/types/interfaces"
+
+declare global {
+  interface Window {
+    google: any
+  }
+}
 
 export default function Reviews() {
-    // const { data: session } = useSession();
-    const [reviews, setReviews] = useState<Review[]>([]);
-    // const [comment, setComment] = useState("");
-    // const [rating, setRating] = useState(5);
-    // const [editingReviewId, setEditingReviewId] = useState<string | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([])
+  const [googleJwt, setGoogleJwt] = useState<string | null>(null)
+  const [userProfile, setUserProfile] = useState<{ name?: string; email?: string; picture?: string } | null>(null)
+  const [comment, setComment] = useState('')
+  const [rating, setRating] = useState(5)
+  const [loading, setLoading] = useState(false)
 
+  const triedSubmitRef = useRef(false)
 
-    const fetchReviews = async () => {
-        try {
-            const res = await fetch(`/api/reviews`);
-            const data = await res.json();
-            setReviews(data.reviews);
-        } catch (error) {
-            console.log(error);
+  async function fetchReviews() {
+    try {
+      const res = await fetch('/api/reviews')
+      const data = await res.json()
+      setReviews(data.reviews)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  useEffect(() => {
+    fetchReviews()
+  }, [])
+
+  useEffect(() => {
+    if (!window.google) return
+
+    window.google.accounts.id.initialize({
+client_id: process.env.NEXT_PUBLIC_AUTH_GOOGLE_ID,
+  callback: (response: any) => {
+
+        setGoogleJwt(response.credential)
+        const base64Url = response.credential.split('.')[1]
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+        const jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split('')
+            .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+            .join('')
+        )
+        const profile = JSON.parse(jsonPayload)
+        setUserProfile({
+          name: profile.name,
+          email: profile.email,
+          picture: profile.picture,
+        })
+
+        if (triedSubmitRef.current) {
+          triedSubmitRef.current = false
+          submitReview(true)
         }
-    };
+      },
+    })
 
-    useEffect(() => {
-        fetchReviews();
-    }, []);
+    window.google.accounts.id.renderButton(
+      document.getElementById('google-signin'),
+      { theme: 'outline', size: 'large' }
+    )
+  }, [])
 
-    // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-    //     if (!session) {
-    //         return;
-    //     }
+async function submitReview(afterLogin = false) {
+  if (!googleJwt) {
+    triedSubmitRef.current = true
+    if (window.google?.accounts?.id?.prompt) {
+      window.google.accounts.id.prompt()
+    } else {
+      alert('Google Identity Services не готовы. Попробуйте обновить страницу.')
+    }
+    return
+  }
 
-    //     const body = {
-    //         name: session.user?.name,
-    //         rating,
-    //         comment,
-    //         email: session.user?.email,
-    //         image: session.user?.image,
-    //         userId: session.user?.id,
-    //         likes: [] ,
-    //         dislikes: [] ,
-    //     };
+  if (!comment.trim()) {
+    alert('Введите текст отзыва')
+    return
+  }
 
-    //     try {
-    //         const res = await fetch(`/api/reviews`, 
+  const payload = {
+    token: googleJwt,
+    comment,
+    rating,
+    userId: userProfile?.email || '', // Используем email как ID
+    name: userProfile?.name || 'Аноним',
+    email: userProfile?.email || '',
+    image: userProfile?.picture || '',
+  }
 
-    //             {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(body),
-    //         });
+  setLoading(true)
+  try {
+    const res = await fetch('/api/reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
 
-    //         if (!res.ok) {
-    //             throw new Error("Failed to submit review");
-    //         }
+    if (!res.ok) throw new Error('Ошибка отправки')
 
-    //         await fetchReviews();
-    //         setComment("");
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
+    if (!afterLogin) alert('Спасибо за отзыв!')
 
-    // const handleEdit = (review: Review) => {
-    //     setEditingReviewId(review._id);
-    //     setComment(review.comment);
-    //     setRating(review.rating);
-    // };
+    setComment('')
+    setRating(5)
+    fetchReviews()
+  } catch (e) {
+    alert('Ошибка при отправке отзыва')
+    console.error(e)
+  } finally {
+    setLoading(false)
+  }
+}
 
-    // const handleDelete = async (reviewId: string) => {
-    //     try {
-    //         const res = await fetch(`/api/reviews`, 
 
-    //             {
-    //             method: "DELETE",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify({ id: reviewId }),
-    //         });
+  return (
+    <div className="min-h-screen flex flex-col justify-center items-center py-12 px-6">
+      <h2 className="mb-8 text-5xl font-bold text-center tracking-tight">Отзывы</h2>
 
-    //         if (!res.ok) {
-    //             throw new Error("Failed to delete review");
-    //         }
+      {!googleJwt && (
+        <div id="google-signin" className="mb-6" />
+      )}
 
-    //         await fetchReviews();
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
+      <div className="mb-8 w-full max-w-md border p-6 rounded-md shadow-sm">
+      <div className="flex items-center gap-4 mb-4">
+  <Avatar>
+    {userProfile?.picture ? (
+      <AspectRatio ratio={1 / 1}>
+        <Image
+          src={userProfile.picture}
+          alt={userProfile.name || 'User picture'}
+          width={48}
+          height={48}
+          className="rounded-full"
+        />
+      </AspectRatio>
+    ) : (
+      <div className="w-12 h-12 bg-gray-300 rounded-full" />
+    )}
+  </Avatar>
+  <div className="flex flex-col">
+    <p className="font-semibold flex items-center gap-2">
+      {userProfile?.name || 'Гость'}
+     
+    </p>
+    <p className="text-sm text-gray-500">{userProfile?.email || 'Не авторизован'}</p>
+  </div>
+</div>
 
-    // const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-    //     if (!session || !editingReviewId) {
-    //         return;
-    //     }
 
-    //     const body = {
-    //         id: editingReviewId,
-    //         comment,
-    //         rating,
-    //     };
-
-    //     try {
-    //         const res = await fetch(`/api/reviews`, 
-
-    //             {
-    //             method: "PUT",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(body),
-    //         });
-
-    //         if (!res.ok) {
-    //             throw new Error("Failed to update review");
-    //         }
-
-    //         await fetchReviews();
-    //         setComment("");
-    //         setEditingReviewId(null);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-  
-    // const handleLikeOrDislike = async (review: Review, action: 'like' | 'dislike') => {
-    //     if (!session) {
-    //         console.error("Пользователь не аутентифицирован");
-    //         return; // Выходим, если сессия отсутствует
-    //     }
-    
-    //     try {
-    //         const response = await fetch(`/api/reviews/${review._id}`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ userId: session.user.id, action }), // Передаем ID пользователя и действие
-    //         });
-    
-    //         if (!response.ok) {
-    //             throw new Error(`Не удалось ${action === 'like' ? 'поставить лайк' : 'поставить дизлайк'}`);
-    //         }
-    
-    //         const result = await response.json();
-    //         console.log("Количество лайков", result.likesCount);
-    //         console.log("Количество дизлайков", result.dislikesCount);
-    //         await fetchReviews(); // Обновляем список отзывов
-    //     } catch (error) {
-    //         console.error(`Ошибка при ${action === 'like' ? 'ставлении лайка' : 'ставлении дизлайка'}:`, error);
-    //     }
-    // };
-    
-return(
-  <div className="min-h-screen flex justify-center items-center py-12 px-6">
-    <div>
-      <h2 className="mb-8 sm:mb-14 text-5xl md:text-6xl font-bold text-center tracking-tight">
-        Отзывы
-      </h2>
-      {/* {session ? (
-    <div className="w-full flex flex-col justify-center items-center">
-        <div className="flex gap-1 items-center">
-            {session.user?.image ? (
-                <Image
-                    src={session.user.image}
-                    alt={`Profile image`}
-                    className="rounded-box"
-                    width={30}
-                    height={30}
-                />
-            ) : (
-                <div className="rounded-box bg-gray-300 w-8 h-8" /> // Плейсхолдер для изображения
-            )}
-            <p>{session.user?.name}</p>
-            <Button  className="w-max h-max text-xs m-0 p-1 btn-xs btn-outline" onClick={() => signIn("google")} >Сменить акаунт</Button>
+        <div className="mb-4">
+          <label className="block mb-1 font-semibold">Оценка:</label>
+          <div className="flex gap-1">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                key={star}
+                type="button"
+                onClick={() => setRating(star)}
+                className={`cursor-pointer ${
+                  star <= rating ? 'text-yellow-400' : 'text-gray-400'
+                }`}
+                aria-label={`Оценка ${star} звёзд`}
+              >
+                <StarIcon className="w-6 h-6" />
+              </button>
+            ))}
+          </div>
         </div>
-        <form onSubmit={handleSubmit} className="mx-auto w-max flex flex-col ">
-            <div className="rating mx-auto my-2">
-                {[1, 2, 3, 4, 5].map((star) => (
-                    <input
-                        key={star}
-                        type="radio"
-                        name="rating"
-                        value={star}
-                        className="mask mask-star-2 bg-orange-400"
-                        checked={rating === star}
-                        onChange={() => setRating(star)}
-                    />
-                ))}
-            </div>
-            <textarea
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder="Напишите отзыв..."
-                className="textarea textarea-bordered textarea-lg w-max mb-3"
-            />
-            <Button  type="submit"  >
-            {editingReviewId ? "Обновить отзыв" : "Отправить отзыв"}
-            </Button>
-        </form>
-    </div>
-) : (
-    <Button type="button" onClick={() => signIn("google")} className="w-max flex self-center mx-auto btn-success">Оставить отзыв</Button>
-)} */}
+
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder="Напишите ваш отзыв..."
+          className="w-full textarea textarea-bordered resize-none mb-4"
+          rows={4}
+        />
+
+        <button
+          disabled={loading}
+          onClick={() => submitReview(false)}
+          className="btn btn-primary w-full"
+        >
+          {loading ? 'Отправка...' : 'Отправить отзыв'}
+        </button>
+      </div>
+
       <div className="w-full max-w-screen-xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden border-r border-background">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="flex flex-col outline outline-border px-6 py-8"
+              className="flex flex-col border border-gray-200 rounded-lg p-6"
             >
-              <div className="flex items-center justify-center gap-2">
-                <StarIcon className="w-6 h-6 fill-yellow-500 stroke-yellow-500" />
-                <StarIcon className="w-6 h-6 fill-yellow-500 stroke-yellow-500" />
-                <StarIcon className="w-6 h-6 fill-yellow-500 stroke-yellow-500" />
-                <StarIcon className="w-6 h-6 fill-yellow-500 stroke-yellow-500" />
-                <StarIcon className="w-6 h-6 fill-yellow-500 stroke-yellow-500" />
+              <div className="flex items-center gap-2 mb-4">
+                {Array(review.rating)
+                  .fill(0)
+                  .map((_, i) => (
+                    <StarIcon
+                      key={i}
+                      className="w-5 h-5 fill-yellow-400 stroke-yellow-400"
+                    />
+                  ))}
               </div>
-              <p className="my-6 text-[17px] text-center max-w-md">
-                {/* &quot;{testimonial.testimonial}&quot; */}
-              </p>
-              <div className="mt-auto flex items-center justify-center gap-3">
-                <Avatar> 
-                  {review.image && (
-                  <AspectRatio ratio={1 / 1}>
-                            <Image
-                                src={review.image}
-                                alt={`${review.name}'s picture`}
-                                width={48}
-                                height={48}
-                            />
-                        </AspectRatio>               
-                        )}  
+              <div className="flex items-center gap-3 mt-auto">
+                <Avatar>
+                  {review.image ? (
+                    <AspectRatio ratio={1 / 1}>
+                      <Image
+                        src={review.image}
+                        alt={`${review.name}'s picture`}
+                        width={48}
+                        height={48}
+                        className="rounded-full"
+                      />
+                    </AspectRatio>
+                  ) : (
+                    <div className="w-12 h-12 bg-gray-300 rounded-full" />
+                  )}
                 </Avatar>
                 <div>
-                  <p className="text-lg font-semibold">{review.name}</p>
-                  <p className="text-sm text-gray-500">
-                    {review.comment}
-                  </p>
+                  <p className="font-semibold">{review.name}</p>
+                  <p className="text-sm text-gray-500">{review.comment}</p>
                 </div>
               </div>
             </div>
@@ -255,5 +238,5 @@ return(
         </div>
       </div>
     </div>
-  </div>)
+  )
 }

@@ -7,7 +7,6 @@ module.exports = {
 
   additionalPaths: async () => {
     const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/all?type=all`;
-    console.log(`🌐 Запрос к API вакансий: ${apiUrl}`);
 
     let vacancies = [];
 
@@ -39,7 +38,6 @@ module.exports = {
         lastmod: vac.updatedAt ? new Date(vac.updatedAt).toISOString() : undefined,
       }));
 
-    console.log(`✅ В sitemap добавлено ${paths.length} вакансий.`);
     return paths;
   },
 };

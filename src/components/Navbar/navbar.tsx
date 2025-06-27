@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Logo } from "./logo";
 import { NavMenu } from "./nav-menu";
 import { NavigationSheet } from "./navigation-sheet";
+import  Link  from "next/link";
+import { LoadingLink } from "../LoadingLink/LoadingLink";
 
 const NavbarPage = () => {
   // Состояние для отслеживания прокрутки
@@ -42,8 +44,9 @@ const NavbarPage = () => {
       >
         <div className="h-full flex items-center justify-between max-w-screen-xl mx-auto px-5 ">
           <div className="flex items-center gap-8">
+            <LoadingLink href="/">
             <Logo />
-
+            </LoadingLink>
             {/* Desktop Menu */}
             <NavMenu className="hidden md:block" />
           </div>

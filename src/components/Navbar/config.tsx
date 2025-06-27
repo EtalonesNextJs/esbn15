@@ -19,34 +19,34 @@ import {
       href: "/vacancies",
     },
     {
-      title: "Новые вакансии",
+      title: "Без опыта",
       icon: PackagePlus,
-      description: "Добавленые вакансии за последний месяц.",
-      href: "/vacancies/categories/new",
+      description: "Вакансии для работников без опыта.",
+      href: "/vacancies/categories/noexp",
     },
     {
       title: "Внутреняя отделка",
       icon: PaintRoller,
       description: "Штукатурка, малярка, плитка, ГПК, электрика, сантехника...",
-      href: "/vacancies/category/indor",
+      href: "/vacancies/categories/indor",
     },
     {
-      title: "Уличные работы",
+      title: "Кровля",
       icon: HardHat,
-      description: "Брусчатка, строительные леса, каменьщики, арматура-бетон...",
-      href: "/vacancies/category/outdor",
+      description: "Черепица, металлочерепица, двухскатные крыши, ...",
+      href: "/vacancies/categories/krovlya",
     },
     {
       title: "Электрика",
       icon: UtilityPole,
       description: "Слаботочка, солнечные панели, подкючение щитов, электроника...",
-      href: "/vacancies/category/electric",
+      href: "/vacancies/categories/electric",
     },
     {
       title: "Сантехника",
       icon: Drill,
       description: "Сан-узлы, ванные комнаты, отопление...",
-      href: "/vacancies/category/sanitary",
+      href: "/vacancies/categories/santehnic",
     },
   ];
   

@@ -1,5 +1,8 @@
 // src/app/vacancies/[city]/page.tsx
 
+import FormCallBack from "@/components/FormCallBack/FormCallBack";
+import Userfull from "@/components/Userfull/Userfull";
+import VacancyCard from "@/components/Vacancy/VacancyCard/VacancyCard";
 import { Metadata, ResolvingMetadata } from "next";
 
 
@@ -81,10 +84,29 @@ export async function generateMetadata(
 }
 
 export default async function VacanciesByCityPage({ params }: Props) {
-
+  const {city} = await params;
+    const decodedCity = decodeURIComponent(city);
+const vacancies = await fetchVacanciesByCity(decodedCity) || [];
   return (
     <>
+<div className="max-w-screen-xl mx-auto px-5">
+      <h1 className="text-2xl font-bold mb-4">Вакансии в {decodedCity} </h1>
 
+      {vacancies.length === 0 ? (
+        <p>Вакансии не найдены.</p>
+      ) : (
+        <ul className="flex flex-wrap gap-4 justify-center">
+          {vacancies.map((vacancy: any) => (
+           <VacancyCard key={vacancy._id} vacancy={vacancy} />
+          ))}
+        </ul>
+      )}
+
+      <hr className="my-8" />
+     
+    </div>    
+<FormCallBack/>
+      <Userfull/>
     </>
   );
 }

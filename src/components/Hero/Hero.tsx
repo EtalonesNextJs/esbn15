@@ -11,6 +11,7 @@ import PrimayForm from "../Forms/PrimaryForm";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { NumberTicker } from "../magicui/number-ticker";
 import { ShimmerButton } from "..//magicui/shimmer-button";
+import { LoadingLink } from "../LoadingLink/LoadingLink";
 
 const Hero = () => {
   const [open, setOpen] = useState(false);
@@ -57,13 +58,13 @@ const Hero = () => {
     /> свободных мест
         </div>
         <div className="mt-12 flex items-center justify-center flex-wrap gap-4">
-        <Link href="/vacancy/category/all">
+        <LoadingLink href="/vacancies/categories">
         <ShimmerButton className="shadow-2xl" background='#870B0B55' >
           <div className="rounded-full text-base flex gap-2">
             Смотреть предложения <ArrowUpRight className="!h-5 !w-5" />
           </div>
           </ShimmerButton>
-          </Link>
+          </LoadingLink>
           <DialogTrigger asChild>
           <Button
             variant="outline"

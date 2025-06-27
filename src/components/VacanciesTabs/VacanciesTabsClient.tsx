@@ -23,7 +23,7 @@ export default function VacanciesTabsClient({
   const { isOpen, toggleFilter } = useFilter();
 
   return (
-    <div className="w-full mb-5">
+    <div className="max-w-screen-xl mx-auto px-5">
       <div className="w-full flex justify-between flex-wrap items-center mb-3">
         <Breadcrumbs />
        <button

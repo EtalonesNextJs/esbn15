@@ -6,6 +6,7 @@ import NavbarPage from "@/components/Navbar/navbar";
 import Footer from "@/components/Footer/Footer";
 import { VacancyProvider } from "@/context/VacancyContext";
 import { NewsProvider } from "@/context/NewsContext";
+import { LoaderProvider } from "@/context/LoaderContext";
 
 export default function DefaultLayout({
   children,
@@ -15,6 +16,7 @@ export default function DefaultLayout({
 
 
   return (
+     <LoaderProvider>
     <VacancyProvider>
       <NewsProvider>
       <div className="relative flex flex-1 flex-col">
@@ -27,5 +29,6 @@ export default function DefaultLayout({
     </div>
     </NewsProvider>
     </VacancyProvider>
+     </LoaderProvider>
   );
 }

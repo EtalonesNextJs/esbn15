@@ -2,6 +2,25 @@
 
 export const BREADCRUMB_LABELS: Record<string, string> = {
   'vacancy': 'Вакансия',
+  'vacancies': 'Вакансии',
+  'new': 'Новые',
+  'categories': 'Категории',
+  'ventilyatsiya': 'Вентиляция',
+  'pdsobnii-rabochiy': 'Подсобные работы',
+
+
+  'electric': 'Электрик',
+  'indor': 'Внутренние работы',
+  'montazh': 'Монтажник',
+  'montazj': 'Монтажник (опечатка)',
+  'noexp': 'Без опыта',
+  'outdor': 'Уличные работы',
+  'santehnic': 'Сантехник',
+  'tehnic': 'Техника',
+  'beton': 'Бетон | Арматура',
+  'kamen': 'Камень',
+  'krovlya': 'Кровля',
+
   'voditel-trir-rabota-po-okrestnostyam-trira-marshruty-ot-50-do-150-km': 'Водитель Трир',
   'krovelshchik-frankfurt-na-mayne-rabota-na-ploskih-i-skatnyh-kryshah': 'Кровельщик Франкфурт на Майне',
   'shtukatur-burghaun-rabota-shtukaturom-v-germanii-burghaun': 'Штукатур Бургхаун',
@@ -49,7 +68,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   'Osnabryuk': 'Оснабрюк Германия',
   'Burghaun': 'Бургхаун',
   'Trir': 'Трир',
-  'Salzgitter': 'Сальцгиттер',
+  'Salzgitter': 'Зальцгиттер',
   'Dortmund': 'Дортмунд',
   'Rennerod': 'Реннерод',
   'Nurnberg': 'Нюрнберг',
@@ -58,7 +77,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   'Rotterdam': 'Роттердам',
   'Kassel': 'Кассель',
   'Wurzburg': 'Вюрцбург',
-  'Aachen': 'Аахен',
+  'Aachen': 'Ахен',
   'Waldbronn': 'Вальдброн',
   'Muhlacker': 'Муллакер',
   'Bad Munstereifel': 'Бад Мустерейфельд',

@@ -12,6 +12,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import React from 'react'
 import { formatLabel } from '@/lib/labels'
+import { LoadingLink } from '../LoadingLink/LoadingLink'
 
 
 
@@ -25,7 +26,7 @@ export function Breadcrumbs() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/">Главная</Link>
+            <LoadingLink href="/">Главная</LoadingLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
@@ -42,7 +43,7 @@ export function Breadcrumbs() {
           <BreadcrumbPage>{formatLabel(decodedSegment)}</BreadcrumbPage>
         ) : (
           <BreadcrumbLink asChild>
-            <Link href={href}>{formatLabel(decodedSegment)}</Link>
+            <LoadingLink href={href}>{formatLabel(decodedSegment)}</LoadingLink>
           </BreadcrumbLink>
         )}
       </BreadcrumbItem>

@@ -12,6 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { useState } from "react";
+import { LoadingLink } from "../LoadingLink/LoadingLink";
 export const NavigationSheet = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,9 +27,9 @@ export const NavigationSheet = () => {
       </SheetTrigger>
       <SheetContent className="bg-primary text-white">
     <ScrollArea className="h-screen overflow-auto">
-        <Link href="/">
+        <LoadingLink href="/">
           <Image src="/main/logoWhite.png" onClick={closeMenu}  alt={""} width={150} height={150} className="m-5 mb-0" />
-          </Link>
+          </LoadingLink>
         <div className=" text-base space-y-4 px-4">
         <Accordion type='multiple'  className="w-full">
           <AccordionItem value="item-1" >

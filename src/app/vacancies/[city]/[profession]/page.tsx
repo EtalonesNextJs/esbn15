@@ -1,5 +1,6 @@
 import VacancyCard from "@/components/Vacancy/VacancyCard/VacancyCard";
 import { fetchVacanciesByProfession } from "@/lib/api/api";
+import { formatLabel } from "@/lib/labels";
 import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
@@ -83,13 +84,13 @@ export default async function VacancyProfessionPage({ params }: { params: Promis
   
 
   return (
-    <div className="p-0">
-      <h1 className="text-2xl font-bold mb-4">Похожие вакансии {decodedProfession} в других городах</h1>
+    <div className="max-w-screen-xl mx-auto px-5">
+      <h1 className="text-2xl font-bold mb-4">Похожие вакансии {formatLabel(decodedProfession)} в других городах</h1>
 
       {vacancies.length === 0 ? (
         <p>Вакансии не найдены.</p>
       ) : (
-        <ul className="space-y-4">
+        <ul className="flex flex-wrap gap-4 justify-center">
           {vacancies.map((vacancy: any) => (
            <VacancyCard key={vacancy._id} vacancy={vacancy} />
           ))}

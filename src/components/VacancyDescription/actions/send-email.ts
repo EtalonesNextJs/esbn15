@@ -16,7 +16,6 @@ export const sendEmailAction = async ({ email, message }: TFormSchema) => {
     //   replyTo: email,
     //   text: `email: ${email} \nmessage: ${message}`,
     // });
-console.log("Email:", email);
     return {
       data: 'Email sent successfully!',
     };

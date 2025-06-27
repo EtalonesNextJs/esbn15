@@ -24,8 +24,7 @@ import { generateSlugFromVacancy } from "@/utils/geterateSlugFromVac"
 import Link from "next/link"
 export default function DrawerContentComponent({ vacancy }: { vacancy: any }) {
   const [open, setOpen] = useState(false);
-  const slug = generateSlugFromVacancy(vacancy);
-      const vacancyLink = `${window.location.origin}/vacancy/${slug}`;
+      const vacancyLink = `${window.location.origin}/vacancies/${vacancy.city}/${vacancy.profession}/${vacancy.slug}`;
   return (
     <DrawerContent className="overflow-auto ">
     <div className="flex justify-between">

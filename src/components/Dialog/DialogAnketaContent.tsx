@@ -211,7 +211,6 @@ export default function DialogAnketaContent({ vacancy, setOpen}: any) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedDocuments, setSelectedDocuments] = useState<any[]>([]);
 
-  console.log("Selected Documents", selectedDocuments);
 
   useEffect(() => {
     setFormData((prevData) => ({

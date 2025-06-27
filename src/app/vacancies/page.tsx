@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import VacanciesCategoryPage from "./categories/page";
 
 
 
@@ -28,7 +29,7 @@ export default async function VacancyProfessionPage() {
   
   return (
     <>
-      
+      <VacanciesCategoryPage/>
     </>
   );
 }

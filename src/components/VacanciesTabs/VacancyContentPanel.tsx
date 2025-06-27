@@ -104,14 +104,14 @@ function generateSeoText(
 
   return (
     <div className="seo-text p-6 mb-6 bg-white rounded-md shadow text-gray-700 leading-relaxed">
-      <h2 className="text-2xl font-semibold mb-4">Работа и вакансии во {city}</h2>
+      <h2 className="text-2xl font-semibold mb-4">Работа и вакансии в {city}</h2>
 
       <p>
         Ищете <strong>работу в {city}</strong> или актуальные <strong>вакансии</strong>? Мы собрали предложения для специалистов в таких профессиях, как {professionLinks}
       </p>
 
       <p>
-        Здесь вы можете найти работу для <strong>{uniqueTitles.length === 1 ? (uniqueTitles[0]?.toLowerCase() ?? "") : 'разных специалистов'}</strong> во {city} и отправить заявку на подходящую вакансию.
+        Здесь вы можете найти работу для <strong>{uniqueTitles.length === 1 ? (uniqueTitles[0]?.toLowerCase() ?? "") : 'разных специалистов'}</strong> в {city} и отправить заявку на подходящую вакансию.
       </p>
 
       <p>
@@ -119,7 +119,7 @@ function generateSeoText(
       </p>
 
       <p className="mt-4 text-sm text-gray-500">
-        Найдите работу мечты во {city} — свежие вакансии и удобный поиск на нашем портале.
+        Найдите работу мечты в {city} — свежие вакансии и удобный поиск на нашем портале.
       </p>
     </div>
   );
@@ -136,7 +136,7 @@ export const VacancyContentPanel = ({
   showFilters = true, // по умолчанию true
 }: Props) => {
   return (
-    <div className="md:col-span-3">
+    <div className="md:col-span-3 ">
       {cities.map((city) => (
         <TabsContent key={city} value={city}>
           {showFilters && (

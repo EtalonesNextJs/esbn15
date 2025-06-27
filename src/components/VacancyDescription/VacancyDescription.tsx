@@ -20,11 +20,9 @@ async function fetchArticleByCategory(category: string) {
   try {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/by-category?category=${encodeURIComponent(category)}`;
     const res = await fetch(url, { cache: 'no-store' });
-    console.log("Fetch Article URL:", url);
-    console.log("Fetch Article status:", res.status);
+
     if (!res.ok) return null;
     const data = await res.json();
-    console.log("Fetch Article data:", data);
     return data;
   } catch (error) {
     console.error("Error fetching article by category:", error);
@@ -37,7 +35,6 @@ async function fetchRelatedPosts(category: string, excludeSlug: string) {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/related?category=${encodeURIComponent(category)}&exclude=${encodeURIComponent(excludeSlug)}`,
     { cache: 'no-store' }
   );
-  console.log("Fetch status:", res.status);
 
   if (!res.ok) return [];
   return res.json();
@@ -45,7 +42,6 @@ async function fetchRelatedPosts(category: string, excludeSlug: string) {
 
 export default async function VacancyDescription({ vacancy }: { vacancy: VacancyType }) {
   const { city, profession, category } = vacancy;
-console.log({ city, profession, category });
 
   const decodedCity = decodeURIComponent(city || "");
   const decodedTitle = decodeURIComponent(profession || "");
@@ -55,8 +51,7 @@ console.log({ city, profession, category });
   const related = article?.slug
     ? await fetchRelatedPosts(category || "", article.slug)
     : [];
-console.log("Article:", article);
-console.log("Related:", related);
+
   return (
     <div className="container flex flex-col items-center">
       <Header {...vacancy} />

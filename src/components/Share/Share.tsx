@@ -14,7 +14,6 @@ interface ShareProps {
 }
 
 const Share = ({ vacancy }: ShareProps) => {
-  console.log("Vacancy9999", vacancy);
   const handleShareClick = async () => {
     const slug = generateSlugFromVacancy(vacancy);
     const { city, profession } = vacancy;

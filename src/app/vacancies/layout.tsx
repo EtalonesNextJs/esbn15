@@ -44,7 +44,7 @@ export default async function VacanciesLayout({
   return (
      <FilterProvider>
 
-    <div className="max-w-screen-xl mx-auto px-5">
+    <div className="">
 
 
       <VacanciesTabsClient

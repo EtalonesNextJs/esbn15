@@ -43,10 +43,7 @@ const Blog = ({ mainPost, relatedPosts }: BlogProps) => {
       api.off("select", onSelect);
     };
   }, [api]);
-useEffect(() => {
-  console.log("Main Post:", mainPost);
-  console.log("Related Posts:", relatedPosts);
-}, [mainPost, relatedPosts]);
+
 
   return (
     <section className="my-10 scroll-mt-28 md:mb-20">
