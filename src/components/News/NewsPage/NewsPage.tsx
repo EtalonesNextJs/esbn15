@@ -23,6 +23,7 @@ export default function NewsPage( {news}: any) {
             'No image'
         )}
     </figure>
+    
                     </div>
                     <div className="mt-5 text-base text-center">
                         {news?.content?.map((article:any, index:number) => (
