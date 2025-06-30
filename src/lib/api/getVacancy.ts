@@ -9,18 +9,17 @@
 // }
 export async function fetchVacanciesGrouped() {
   try {
-    console.log('API URL:', `${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/grouped-by-city`);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/grouped-by-city`, {
-      cache: "force-cache",
+    const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/grouped-by-city`;
+    const res = await fetch(apiUrl, {
+      cache: "no-store", // Отключаем кэш для теста
     });
     if (!res.ok) {
-      throw new Error(`Failed to fetch vacancies: ${res.status}`);
+      throw new Error(`Failed to fetch vacancies: ${res.status} ${res.statusText}`);
     }
     const grouped = await res.json();
-    console.log('Fetched vacancies:', grouped);
     return grouped;
   } catch (error: any) {
     console.error('Error in fetchVacanciesGrouped:', error.message);
-    return []; 
+    return [];
   }
 }
