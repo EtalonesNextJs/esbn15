@@ -48,7 +48,7 @@ export default async function VacanciesLayout({
 
 
       <VacanciesTabsClient
-        grouped={grouped}
+        grouped={grouped || []}
         profession={params.title || ""}
         country={params.country || ""}
         initialCity={params.city}
