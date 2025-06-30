@@ -1,4 +1,5 @@
 export async function fetchVacanciesGrouped() {
+  console.log('Fetching vacancies from:', `${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/grouped-by-city`);
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vacancy/grouped-by-city`, {
     cache: "force-cache", 
   });
