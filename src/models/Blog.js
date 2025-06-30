@@ -9,6 +9,7 @@ const BlogSchema = new Schema(
         type: String, // массив изображений
       },
     ],
+    
 
     source: {
       type: String,
