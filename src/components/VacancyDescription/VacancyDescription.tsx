@@ -41,8 +41,8 @@ async function fetchRelatedPosts(category: string, excludeSlug: string) {
 }
 
 export default async function VacancyDescription({ vacancy }: { vacancy: VacancyType }) {
-  const { city, profession, category } = vacancy;
-
+  const { city, profession, category, manager } = vacancy;
+console.log("MANAGERVACANCY", manager)
   const decodedCity = decodeURIComponent(city || "");
   const decodedTitle = decodeURIComponent(profession || "");
 

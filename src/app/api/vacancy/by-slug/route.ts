@@ -12,8 +12,12 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Slug is required" }, { status: 400 });
   }
 
-  // Ищем вакансию по slug
-  const vacancy = await Vacancies.findOne({ slug }).lean();
+  
+  const vacancy = await Vacancies.findOne({ slug }).populate({
+    path: 'manager',
+    select: 'name phone' 
+  })
+  .lean();
 
   if (!vacancy) {
     return NextResponse.json({ error: "Vacancy not found" }, { status: 404 });
