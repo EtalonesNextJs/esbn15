@@ -63,7 +63,7 @@ export default async function VacancyDescription({ vacancy }: { vacancy: Vacancy
   relatedPosts={related}
       />
       <Projects vacancies={recommendedVacancies} />
-      <Contact />
+      <Contact vacancy={vacancy} />
     </div>
   );
 }

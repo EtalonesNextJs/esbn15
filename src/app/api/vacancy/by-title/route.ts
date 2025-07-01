@@ -18,6 +18,5 @@ export async function GET(request: Request) {
   const vacancies = await Vacancies.find({
     profession: { $regex: new RegExp(`^${profession}$`, 'i') },
   }).lean();
-console.log("Vacancies889988", vacancies);
   return NextResponse.json(vacancies);
 }

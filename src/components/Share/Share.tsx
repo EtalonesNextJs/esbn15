@@ -3,7 +3,6 @@
 import { ShareIcon } from 'lucide-react';
 import React from 'react';
 import { toast } from "sonner";
-import { generateSlugFromVacancy } from '@/utils/geterateSlugFromVac';
 
 interface ShareProps {
   vacancy: {
@@ -15,8 +14,7 @@ interface ShareProps {
 
 const Share = ({ vacancy }: ShareProps) => {
   const handleShareClick = async () => {
-    const slug = generateSlugFromVacancy(vacancy);
-    const { city, profession } = vacancy;
+    const { city, profession, slug } = vacancy;
     const vacancyLink = `${window.location.origin}/vacancies/${city}/${profession}/${slug}`;
 
     try {

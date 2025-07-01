@@ -20,11 +20,12 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import DialogAnketaContent from "../Dialog/DialogAnketaContent"
 import { useState } from "react"
 import Share from "../Share/Share"
-import { generateSlugFromVacancy } from "@/utils/geterateSlugFromVac"
 import Link from "next/link"
 export default function DrawerContentComponent({ vacancy }: { vacancy: any }) {
+  console.log("TESTVACANCY", vacancy)
   const [open, setOpen] = useState(false);
-      const vacancyLink = `${window.location.origin}/vacancies/${vacancy.city}/${vacancy.profession}/${vacancy.slug}`;
+const { city, profession, slug } = vacancy;
+    const vacancyLink = `${window.location.origin}/vacancies/${city}/${profession}/${slug}`;
   return (
     <DrawerContent className="overflow-auto ">
     <div className="flex justify-between">
