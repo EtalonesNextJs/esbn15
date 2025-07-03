@@ -87,7 +87,9 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   'Baden-Wurttemberg': 'Баден-Вюртемберг',
   'Koln': 'Кёльн',
   'Osnabruck': 'Оснабрюк',
-  'Monchengladbach': 'Мёнхенгладбах'
+  'Monchengladbach': 'Мёнхенгладбах',
+  'Berlin': 'Берлин',
+  'Antwerpen': 'Антверпен',
 } 
 
 export function formatLabel(segment: string): string {
