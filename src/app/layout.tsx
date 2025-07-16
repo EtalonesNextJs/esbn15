@@ -25,6 +25,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+console.log(`
+Dedicated to everyone who doesn’t like our website and to those who believe they can make it better — we believe in your abilities and wish you success.
+If you know how to do it better, sit down and build a site better than ours!
+
+If you want to offer your services, know this: we only pay for results.
+Don’t expect any upfront payments or advances from us.
+`);
   return (
     <html lang="ru">
 

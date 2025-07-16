@@ -45,8 +45,6 @@ const baseUrl = `https://api.telegram.org/bot${botToken}`;
 export const sendMessage = async (message: string): Promise<void> => {
     const url: string = `${baseUrl}/sendMessage`;
 
-    console.log('Sending message to chat:', chatId);
-    console.log('Message content:', message);
 
     const response = await fetch(url, {
         method: 'POST',
@@ -63,7 +61,6 @@ export const sendMessage = async (message: string): Promise<void> => {
     const responseBody = await response.json();
     
     // Логируем ответ от API для диагностики
-    console.log('Response from Telegram API:', responseBody);
 
     if (!response.ok) {
         console.error(`Error sending message: ${responseBody.description}`);
@@ -73,8 +70,6 @@ export const sendMessage = async (message: string): Promise<void> => {
 export const sendPhoto = async (photo: Buffer, caption: string): Promise<void> => {
     const url: string = `${baseUrl}/sendPhoto`;
 
-    console.log('Sending photo to chat:', chatId);
-    console.log('Photo caption:', caption);
     
     const formData = new FormData();
     formData.append('chat_id', chatId);
@@ -91,8 +86,6 @@ export const sendPhoto = async (photo: Buffer, caption: string): Promise<void> =
 
     const responseBody = await response.json();
     
-    // Логируем ответ от API для диагностики
-    console.log('Response from Telegram API:', responseBody);
 
     if (!response.ok) {
         console.error(`Error sending photo: ${responseBody.description}`);

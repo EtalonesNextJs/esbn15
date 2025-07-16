@@ -22,7 +22,6 @@ import { useState } from "react"
 import Share from "../Share/Share"
 import Link from "next/link"
 export default function DrawerContentComponent({ vacancy }: { vacancy: any }) {
-  console.log("TESTVACANCY", vacancy)
   const [open, setOpen] = useState(false);
 const { city, profession, slug } = vacancy;
     const vacancyLink = `${window.location.origin}/vacancies/${city}/${profession}/${slug}`;

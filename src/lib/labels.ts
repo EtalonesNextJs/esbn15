@@ -4,6 +4,8 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   'vacancy': 'Вакансия',
   'vacancies': 'Вакансии',
   'new': 'Новые',
+  'news': 'Новости',
+  'view': 'Просмотр',
   'categories': 'Категории',
   'ventilyatsiya': 'Вентиляция',
   'pdsobnii-rabochiy': 'Подсобные работы',
